@@ -1,0 +1,8 @@
+name: Sex
+main: yejunho10.magicplugin.GUIPlugin
+version: '${version}'
+description: This Plugin is For Feather Server. ALL RIGHTS RESERVED.
+auther: [ yejunho10 ]
+api-version: 1.19
+
+commands:
