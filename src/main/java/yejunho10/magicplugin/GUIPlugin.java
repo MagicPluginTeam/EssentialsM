@@ -1,10 +1,7 @@
 package yejunho10.magicplugin;
 
-import org.bukkit.Bukkit;
-import org.bukkit.boss.BossBar;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
-import yejunho10.magicplugin.event.Event;
 
 @SuppressWarnings("all")
 public class GUIPlugin extends JavaPlugin implements CommandExecutor {
@@ -12,7 +9,7 @@ public class GUIPlugin extends JavaPlugin implements CommandExecutor {
 
     @Override
     public void onEnable() {
-        getLogger().info("[플러그인이 활성화됩니다]");
+        getLogger().info("[Plugin Enabled]");
 
         instance = this;
 
@@ -21,7 +18,7 @@ public class GUIPlugin extends JavaPlugin implements CommandExecutor {
 
     @Override
     public void onDisable() {
-        getLogger().info("[플러그인이 비활성화됩니다]");
+        getLogger().info("[Plugin Disabled]");
     }
 
     public static GUIPlugin getInstance() {
