@@ -1,0 +1,40 @@
+## <- Settings -> ##
+prefix: "&a[&1c]"
+
+##<- CustomJoinMessage ->##
+CustomJoinMessage:
+  - disable: false # true or false
+  - message: "&9[&a+&9] &7%player%" # you can use %player%
+
+##<- CustomQuitMessage ->##
+CustomQuitMessage:
+  - disable: false # true or false
+  - message: "&9[&a-&9] &7%player%" # you can use %player%
+
+## <- Announcement -> ##
+Announcement:
+  - disable: false # true or false
+  - delay: 30 # seconds
+  - message:
+    - TestMessage
+
+AnnouncementMessage:
+  - TestMessage: "This is Test."
+
+AnnouncementWhenJoin:
+  - disable: false # true or false
+  - Title:
+    - title: "Welcome!"
+    - subtitle: "We are MagicPlugin."
+    - fadein: 2
+    - stay: 5
+    - fadeout: 2
+
+AnnouncementWhenDeath:
+    - disable: false # true or false
+    - Title:
+        - title: "You are dead."
+        - subtitle: "try /back command."
+        - fadein: 2
+        - stay: 5
+        - fadeout: 2

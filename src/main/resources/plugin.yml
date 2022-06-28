@@ -1,6 +1,6 @@
-name: magicplugin
-main: yejunho10.magicplugin.GUIPlugin
-version: '${version}'
-description: This Plugin is For Feather Server. ALL RIGHTS RESERVED.
-auther: [ yejunho10 ]
+name: MagicPlugin
+main: AMD_5900X.MagiCPlugin
+version: 1.0
+description: ALL RIGHTS RESERVED.
+author: AMD_5900X
 api-version: 1.19

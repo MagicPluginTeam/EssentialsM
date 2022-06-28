@@ -8,7 +8,7 @@ version = '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
     maven {
-        url "http://dpp.dpnw.site:8081/repository/maven-public/"
+        url = 'http://dpp.dpnw.site:8081/repository/maven-public/'
         allowInsecureProtocol = true
     }
 }
