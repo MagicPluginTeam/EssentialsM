@@ -8,7 +8,7 @@ public class DataContainor {
         return config.getBoolean("CustomJoinMessage.enable");
     }
 
-    public static Boolean getCustomQuitMessage() {
-        return config.getBoolean("CustomQuitMessage.message");
+    public static Boolean isCustomQuitMessageEnabled() {
+        return config.getBoolean("CustomQuitMessage.enable");
     }
 }

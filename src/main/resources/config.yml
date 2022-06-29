@@ -1,15 +1,17 @@
+## [ <-- Color Code: http://web.feather-s.kr:100/colors/ --> ] ##
+
 ## <- Settings -> ##
-prefix: "&a[&1MagicPlugin&a]"
+prefix: "§a[§bMagicPlugin§a]"
 
 ##<- CustomJoinMessage ->##
-CustomJoinMessage:
+Join:
   - enable: false # true or false
-  - message: "&9[&a+&9] &7%player%" # you can use %player%
+  - message: "§9[§a+§9] §7%player%" # you can use %player%
 
 ##<- CustomQuitMessage ->##
-CustomQuitMessage:
+Quit:
   - enable: false # true or false
-  - message: "&9[&a-&9] &7%player%" # you can use %player%
+  - message: "§9[§a-§9] §7%player%" # you can use %player%
 
 ## <- Announcement -> ##
 Announcement:

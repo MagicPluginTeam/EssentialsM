@@ -2,7 +2,9 @@ package kr.feathers;
 
 import kr.feathers.Listener.JoinQuit;
 import kr.feathers.commands.MPCommand;
+import kr.feathers.utils.ColorUtils;
 import kr.feathers.utils.ConfigUtils;
+import kr.feathers.utils.JoinQuitMessageManager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -26,7 +28,7 @@ public class MagicPlugin extends JavaPlugin implements CommandExecutor {
         plugin = this;
         config = ConfigUtils.loadDefaultPluginConfig(plugin);
         log = getLogger();
-        prefix = config.getString("prefix");
+        prefix = ColorUtils.applyColor(config.getString("prefix"));
 
         /* ## <- Setting Executor -> ## */
         getCommand("mp").setExecutor(new MPCommand());
@@ -34,14 +36,14 @@ public class MagicPlugin extends JavaPlugin implements CommandExecutor {
         /* ## <- Setting Event Listener -> ## */
         Bukkit.getPluginManager().registerEvents(new JoinQuit(), plugin);
 
-        log.info("[ <- MagicPlugin 활성화 -> ]");
+        log.info("[ <- MagicPlugin Enabled -> ]");
     }
 
     @Override
     public void onDisable() {
-        ConfigUtils.savePluginConfig(plugin, config);
+        /* ConfigUtils.savePluginConfig(plugin, config); */
 
-        log.info("[ <- MagicPlugin 비활성화 -> ]");
+        log.info("[ <- MagicPlugin Disabled -> ]");
     }
 }
 
