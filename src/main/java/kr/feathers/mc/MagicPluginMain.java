@@ -1,20 +1,14 @@
 package kr.feathers.mc;
 
-import kr.feathers.bot.MagicPluginBot;
 import kr.feathers.mc.Listener.JoinQuit;
 import kr.feathers.mc.commands.MPCommand;
 import kr.feathers.mc.utils.ConfigUtils;
 import kr.feathers.mc.utils.DataContainor;
-import net.dv8tion.jda.api.JDA;
-import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.OnlineStatus;
-import net.dv8tion.jda.api.entities.Activity;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import javax.security.auth.login.LoginException;
-import java.io.File;
 import java.util.logging.Logger;
 
 import static kr.feathers.bot.MagicPluginBot.initJDA;
