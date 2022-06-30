@@ -1,5 +1,6 @@
 package kr.feathers.mc;
 
+import kr.feathers.mc.listener.ChatSync;
 import kr.feathers.mc.listener.JoinQuit;
 import kr.feathers.mc.commands.MPCommand;
 import kr.feathers.mc.utils.ConfigUtils;
@@ -38,6 +39,7 @@ public class MagicPluginMain extends JavaPlugin implements CommandExecutor {
 
         /* ## <- Setting Event Listener -> ## */
         getPluginManager().registerEvents(new JoinQuit(), this);
+        getPluginManager().registerEvents(new ChatSync(), this);
 
         try {
             initJDA();

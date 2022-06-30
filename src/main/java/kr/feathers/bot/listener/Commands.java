@@ -19,8 +19,6 @@ public class Commands extends ListenerAdapter {
     private static final Logger log = MagicPluginMain.getInstance().getLogger();
 
     public void onMessageReceived(MessageReceivedEvent e) {
-        log.info("Message Received!");
-
         if (!e.getMessage().getContentRaw().startsWith(BotCommandPrefix)) { return; }
 
         if (e.getAuthor().isBot()) { return; }

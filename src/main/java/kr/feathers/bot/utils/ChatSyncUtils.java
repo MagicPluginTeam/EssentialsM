@@ -20,7 +20,7 @@ public class ChatSyncUtils {
     }
 
     public static void sendChatMessage(String message, Player ChatPlayer) {
-        String str = message
+        String str = DataContainor.getChatSyncMessage()
                 .replace("%player%", ChatPlayer.getName())
                 .replace("%message%", message);
 
@@ -33,6 +33,9 @@ public class ChatSyncUtils {
 
         EmbedBuilder eb = new EmbedBuilder()
                 .setTitle(str)
+                .setDescription("test")
+                .setAuthor("AMD_5900X")
+                .setFooter("This is Footer")
                 .setColor(Color.green);
 
         ChatSyncChannel.sendMessage((CharSequence) eb.build()).queue();

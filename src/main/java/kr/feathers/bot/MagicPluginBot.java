@@ -2,6 +2,7 @@ package kr.feathers.bot;
 
 import kr.feathers.bot.listener.Commands;
 import kr.feathers.bot.utils.RichPresenceUtils;
+import kr.feathers.mc.listener.ChatSync;
 import kr.feathers.mc.utils.DataContainor;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -26,6 +27,7 @@ public class MagicPluginBot {
         jda = JDABuilder.createDefault(BotToken).build();
 
         jda.addEventListener(new Commands());
+        jda.addEventListener(new ChatSync());
         RichPresenceUtils.setStatus(OnlineStatus.ONLINE);
         RichPresenceUtils.setActivity(Activity.playing("FEATHER SERVER"), true);
     }

@@ -75,4 +75,12 @@ public class DataContainor {
     public static String getPlayerDeathMessage() {
         return config.getString("ChatSync.playerDeathMessage");
     }
+
+    public static String getChatSyncMessage() {
+        return config.getString("ChatSync.message");
+    }
+
+    public static String getMessageReceivedFromDiscord() {
+            return config.getString("ChatSync.messageReceivedFromDiscord");
+    }
 }

@@ -32,13 +32,13 @@ ChatSyncChannelID: "YOUR_CHANNEL_ID"
 VerifiedRoleID: "YOUR_ROLE_ID"
 
 ## <- ChaySync Settings -> ##
-ChaySync:
-  enable: true
+ChatSync:
   message: "%player% » %message%"   #[ you can use %player% / %message%]#
   joinMessage: "%player% joined the server!"  #[ you can use %player% ]#
   quitMessage: "%player% left the server!"  #[ you can use %player% ]#
   goalAdvancementMessage: "%player% has made the advancement: %advancement_name%!"  #[ you can use %player% / %advancement_name% ]#
   playerDeathMessage: "%player% has died: %cause%"  #[ you can use %player%, %cause% ]#
+  messageReceivedFromDiscord: "§b[§6Discord§b] §7%user_name% » %message%"  #[ you can use %user_name% / %message% ]#
 
 ## [ <-- By AMD_5900X -->] ##
 ## [ <-- Contact: 호예준#3840 -->] ##
