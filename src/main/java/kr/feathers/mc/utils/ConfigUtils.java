@@ -1,6 +1,6 @@
-package kr.feathers.utils;
+package kr.feathers.mc.utils;
 
-import kr.feathers.MagicPlugin;
+import kr.feathers.mc.MagicPluginMain;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 public class ConfigUtils {
     /* ## <- Original Code From: darksoldier1404 -> ## */
 
-    private static final MagicPlugin core = MagicPlugin.getInstance();
+    private static final MagicPluginMain core = MagicPluginMain.getInstance();
     private static final Logger log = core.getLogger();
 
     @NotNull

@@ -1,5 +1,5 @@
 name: MagicPlugin
-main: kr.feathers.MagicPlugin
+main: kr.feathers.mc.MagicPluginMain
 version: 1.0
 description: ALL RIGHTS RESERVED.
 author: AMD_5900X

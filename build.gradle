@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'java-library'
+    id "com.github.johnrengelman.shadow" version "7.1.2"
 }
 
 group = 'yejunho10.magicplugin'
@@ -7,16 +9,27 @@ version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    jcenter()
     maven {
         url = 'http://dpp.dpnw.site:8081/repository/maven-public/'
         allowInsecureProtocol = true
+    }
+    maven {
+        url = uri("https://repo.papermc.io/repository/maven-public/")
     }
 }
 
 dependencies {
     implementation 'org.jetbrains:annotations:23.0.0'
+
     compileOnly 'org.spigotmc:spigot-api:R0.1:1.19'
-    compileOnly 'org.bukkit.craftbukkit:craftbukkit:R0.1:1.19'
+    compileOnly 'io.papermc.paper:paper-api:1.19-R0.1-SNAPSHOT'
+
+    api 'net.dv8tion:JDA:5.0.0-alpha.12'
+}
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 }
 
 compileJava {

@@ -1,4 +1,4 @@
-package kr.feathers.utils;
+package kr.feathers.mc.utils;
 
 import org.bukkit.Material;
 import org.bukkit.SkullType;
@@ -7,7 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
 @SuppressWarnings("all")
-public class itemStackUtils {
+public class ItemStackUtils {
     /* ## <- This Method's Original Code From: darksoldier1404 -> ## */
     public static ItemStack getPlayerHead(Player p) {
         ItemStack head = new ItemStack(Material.PLAYER_HEAD, 1, (short) SkullType.PLAYER.ordinal());

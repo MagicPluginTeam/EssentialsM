@@ -1,42 +1,33 @@
 ## [ <-- Color Code: http://web.feather-s.kr:100/colors/ --> ] ##
 
+## [ <-- Item Code: https://minecraftitemids.com/ --> ] ##
+#                     ⌜ We Need Numerical ID ⌟           #
+
 ## <- Settings -> ##
-prefix: "§a[§bMagicPlugin§a]"
+LogPrefix: "§a[§bMagicPlugin§a]"
 
-##<- CustomJoinMessage ->##
+## <- CustomJoinMessage -> ##
 Join:
-  - enable: false # true or false
-  - message: "§9[§a+§9] §7%player%" # you can use %player%
+  enable: true
+  message: "§9[§a+§9] §7%player%"   #[ you can use %player% ]#
 
-##<- CustomQuitMessage ->##
+## <- CustomQuitMessage -> ##
 Quit:
-  - enable: false # true or false
-  - message: "§9[§a-§9] §7%player%" # you can use %player%
+  enable: true
+  message: "§9[§a-§9] §7%player%"   #[ you can use %player% ]#
 
-## <- Announcement -> ##
-Announcement:
-  - enable: false # true or false
-  - delay: 30 # seconds
-  - message:
-    - TestMessage
+## <- DiscordBot Settings -> ##
+BotToken: "YOUR_BOT_TOKEN"
+BotCommandPrefix: "!"
 
-AnnouncementMessage:
-  - TestMessage: "This is Test."
+# [Channel ID] #
+WelcomeByeChannelID: "YOUR_CHANNEL_ID"
+VerifyChannelID: "YOUR_CHANNEL_ID"
+ChatSyncChannelID: "YOUR_CHANNEL_ID"
 
-AnnouncementWhenJoin:
-  - enable: false # true or false
-  - Title:
-    - title: "Welcome!"
-    - subtitle: "We are MagicPlugin."
-    - fadein: 2
-    - stay: 5
-    - fadeout: 2
+# [Role ID] #
+VerifiedRoleID: "YOUR_ROLE_ID"
 
-AnnouncementWhenDeath:
-    - enable: false # true or false
-    - Title:
-        - title: "You are dead."
-        - subtitle: "try /back command."
-        - fadein: 2
-        - stay: 5
-        - fadeout: 2
+
+## [ <-- By AMD_5900X -->] ##
+## [ <-- Contact: 호예준#3840 -->] ##
