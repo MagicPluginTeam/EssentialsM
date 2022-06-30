@@ -19,6 +19,9 @@ Quit:
 ## <- DiscordBot Settings -> ##
 BotToken: "YOUR_BOT_TOKEN"
 BotCommandPrefix: "!"
+BotStatus:
+  richPresence: "FEATHER ANARCHY"
+  status: "ONLINE" #[ "online", "idle", "dnd", "invisible", "offline" ]#
 
 # [Channel ID] #
 WelcomeByeChannelID: "YOUR_CHANNEL_ID"
@@ -28,6 +31,14 @@ ChatSyncChannelID: "YOUR_CHANNEL_ID"
 # [Role ID] #
 VerifiedRoleID: "YOUR_ROLE_ID"
 
+## <- ChaySync Settings -> ##
+ChaySync:
+  enable: true
+  message: "%player% » %message%"   #[ you can use %player% / %message%]#
+  joinMessage: "%player% joined the server!"  #[ you can use %player% ]#
+  quitMessage: "%player% left the server!"  #[ you can use %player% ]#
+  goalAdvancementMessage: "%player% has made the advancement: %advancement_name%!"  #[ you can use %player% / %advancement_name% ]#
+  playerDeathMessage: "%player% has died: %cause%"  #[ you can use %player%, %cause% ]#
 
 ## [ <-- By AMD_5900X -->] ##
 ## [ <-- Contact: 호예준#3840 -->] ##

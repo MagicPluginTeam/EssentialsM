@@ -1,6 +1,6 @@
 package kr.feathers.mc;
 
-import kr.feathers.mc.Listener.JoinQuit;
+import kr.feathers.mc.listener.JoinQuit;
 import kr.feathers.mc.commands.MPCommand;
 import kr.feathers.mc.utils.ConfigUtils;
 import kr.feathers.mc.utils.DataContainor;

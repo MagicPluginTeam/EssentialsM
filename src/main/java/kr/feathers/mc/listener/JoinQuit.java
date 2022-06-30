@@ -1,4 +1,4 @@
-package kr.feathers.mc.Listener;
+package kr.feathers.mc.listener;
 
 import kr.feathers.mc.utils.DataContainor;
 import org.bukkit.event.EventHandler;

@@ -1,6 +1,7 @@
 package kr.feathers.bot;
 
 import kr.feathers.bot.listener.Commands;
+import kr.feathers.bot.utils.RichPresenceUtils;
 import kr.feathers.mc.utils.DataContainor;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -25,8 +26,8 @@ public class MagicPluginBot {
         jda = JDABuilder.createDefault(BotToken).build();
 
         jda.addEventListener(new Commands());
-        jda.getPresence().setStatus(OnlineStatus.ONLINE);
-        jda.getPresence().setPresence(Activity.playing("FEATHER SERVER"), true);
+        RichPresenceUtils.setStatus(OnlineStatus.ONLINE);
+        RichPresenceUtils.setActivity(Activity.playing("FEATHER SERVER"), true);
     }
 
     public static void initVars() {

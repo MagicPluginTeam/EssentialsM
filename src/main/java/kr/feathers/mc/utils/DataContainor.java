@@ -1,5 +1,8 @@
 package kr.feathers.mc.utils;
 
+import net.dv8tion.jda.api.OnlineStatus;
+import net.dv8tion.jda.api.entities.Activity;
+
 import static kr.feathers.mc.MagicPluginMain.config;
 
 @SuppressWarnings("all")
@@ -47,5 +50,29 @@ public class DataContainor {
 
     public static String getVerifiedRoleID() {
         return config.getString("VerifiedRoleID");
+    }
+
+    public static String getBotRichPresence() {
+        return config.getString("BotStatus.richPresence");
+    }
+
+    public static OnlineStatus getBotStatus() {
+        return OnlineStatus.valueOf(config.getString("BotStatus.status"));
+    }
+
+    public static String getChatSyncJoinMessage() {
+        return config.getString("ChatSync.JoinMessage");
+    }
+
+    public static String getChatSyncQuitMessage() {
+        return config.getString("ChatSync.QuitMessage");
+    }
+
+    public static String getGoalAdvancementMessage() {
+        return config.getString("ChatSync.goalAdvancementMessage");
+    }
+
+    public static String getPlayerDeathMessage() {
+        return config.getString("ChatSync.playerDeathMessage");
     }
 }
