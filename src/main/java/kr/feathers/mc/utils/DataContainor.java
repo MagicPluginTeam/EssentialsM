@@ -1,7 +1,7 @@
 package kr.feathers.mc.utils;
 
+import kr.feathers.mc.MagicPluginMain;
 import net.dv8tion.jda.api.OnlineStatus;
-import net.dv8tion.jda.api.entities.Activity;
 
 import static kr.feathers.mc.MagicPluginMain.config;
 
@@ -57,15 +57,29 @@ public class DataContainor {
     }
 
     public static OnlineStatus getBotStatus() {
-        return OnlineStatus.valueOf(config.getString("BotStatus.status"));
+        switch(config.getString("BotStatus.status")) {
+            case "online":
+                return OnlineStatus.ONLINE;
+            case "idle":
+                return OnlineStatus.IDLE;
+            case "dnd":
+                return OnlineStatus.DO_NOT_DISTURB;
+            case "invisible":
+                return OnlineStatus.INVISIBLE;
+            case "offline":
+                return OnlineStatus.OFFLINE;
+            default:
+                MagicPluginMain.getInstance().getLogger().warning("Invalid status in config.yml & set status to online");
+                return OnlineStatus.ONLINE;
+        }
     }
 
     public static String getChatSyncJoinMessage() {
-        return config.getString("ChatSync.JoinMessage");
+        return config.getString("ChatSync.joinMessage");
     }
 
     public static String getChatSyncQuitMessage() {
-        return config.getString("ChatSync.QuitMessage");
+        return config.getString("ChatSync.quitMessage");
     }
 
     public static String getGoalAdvancementMessage() {
@@ -82,5 +96,13 @@ public class DataContainor {
 
     public static String getMessageReceivedFromDiscord() {
             return config.getString("ChatSync.messageReceivedFromDiscord");
+    }
+
+    public static String getServerStatusToChatSyncChannel() {
+        return config.getString("ServerStatus.ChatSyncChannel");
+    }
+
+    public static Integer getServerStatusUpdateInterval() {
+        return config.getInt("ServerStatus.UpdateInterval");
     }
 }

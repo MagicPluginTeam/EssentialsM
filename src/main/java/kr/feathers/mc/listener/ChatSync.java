@@ -5,10 +5,11 @@ import kr.feathers.mc.utils.DataContainor;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
@@ -25,7 +26,7 @@ public class ChatSync extends ListenerAdapter implements Listener {
     }
 
     @EventHandler
-    public void onPlayerChat(AsyncPlayerChatEvent e) {
+    public void onPlayerChat(PlayerChatEvent e) {
         ChatSyncUtils.sendChatMessage(e.getMessage(), e.getPlayer());
     }
 
@@ -36,12 +37,14 @@ public class ChatSync extends ListenerAdapter implements Listener {
 
     public void onMessageReceived(MessageReceivedEvent e) {
         if (!e.getTextChannel().getId().equals(DataContainor.getChatSyncChannelID())) { return; }
-        if (e.getMessage().getMember().getUser().isBot()) { return; }
+        if (e.getAuthor().isBot()) { return; }
 
         String str = DataContainor.getMessageReceivedFromDiscord()
-                        .replace("%user_name%", e.getAuthor().getName())
+                        .replace("%user_name%", e.getMember().getEffectiveName())
                         .replace("%message%", e.getMessage().getContentRaw());
 
-        Bukkit.broadcastMessage(str);
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            p.sendMessage(str);
+        }
     }
 }

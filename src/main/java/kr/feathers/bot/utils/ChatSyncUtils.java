@@ -3,10 +3,11 @@ package kr.feathers.bot.utils;
 import kr.feathers.mc.utils.DataContainor;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
+import org.bukkit.Bukkit;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.entity.Player;
 
-import java.awt.*;
+import java.awt.Color;
 
 import static kr.feathers.bot.MagicPluginBot.jda;
 
@@ -19,9 +20,13 @@ public class ChatSyncUtils {
         return ChatSyncChannelID;
     }
 
+    public static TextChannel getChatSyncChannel() {
+        return ChatSyncChannel;
+    }
+
     public static void sendChatMessage(String message, Player ChatPlayer) {
         String str = DataContainor.getChatSyncMessage()
-                .replace("%player%", ChatPlayer.getName())
+                .replace("%player%", "`" + ChatPlayer.getName() + "`")
                 .replace("%message%", message);
 
         ChatSyncChannel.sendMessage(str).queue();
@@ -32,13 +37,11 @@ public class ChatSyncUtils {
                 .replace("%player%", JoinPlayer.getName());
 
         EmbedBuilder eb = new EmbedBuilder()
-                .setTitle(str)
-                .setDescription("test")
-                .setAuthor("AMD_5900X")
-                .setFooter("This is Footer")
+                .setAuthor(str)
+                .setDescription("Now Online: " + Bukkit.getOnlinePlayers().size() + " / " + Bukkit.getMaxPlayers())
                 .setColor(Color.green);
 
-        ChatSyncChannel.sendMessage((CharSequence) eb.build()).queue();
+        ChatSyncChannel.sendMessageEmbeds(eb.build()).queue();
     }
 
     public static void sendQuitMessage(Player QuitPlayer) {
@@ -46,10 +49,11 @@ public class ChatSyncUtils {
                 .replace("%player%", QuitPlayer.getName());
 
         EmbedBuilder eb = new EmbedBuilder()
-                .setTitle(str)
+                .setAuthor(str)
+                .setDescription("Now Online: " + (Bukkit.getOnlinePlayers().size() - 1) + " / " + Bukkit.getMaxPlayers())
                 .setColor(Color.red);
 
-        ChatSyncChannel.sendMessage((CharSequence) eb.build()).queue();
+        ChatSyncChannel.sendMessageEmbeds(eb.build()).queue();
     }
 
     public static void sendGoalAdvancement(Player GoalPlayer, Advancement advancement) {
@@ -58,10 +62,10 @@ public class ChatSyncUtils {
                 .replace("%advancement_name%", advancement.getDisplay().getTitle());
 
         EmbedBuilder eb = new EmbedBuilder()
-                .setTitle(str)
+                .setAuthor(str)
                 .setColor(Color.YELLOW);
 
-        ChatSyncChannel.sendMessage((CharSequence) eb.build()).queue();
+        ChatSyncChannel.sendMessageEmbeds(eb.build()).queue();
     }
 
     public static void sendPlayerDeath(Player DeathPlayer, String cause) {
@@ -70,9 +74,9 @@ public class ChatSyncUtils {
                 .replace("%cause%", cause);
 
         EmbedBuilder eb = new EmbedBuilder()
-                .setTitle(str)
+                .setAuthor(str)
                 .setColor(Color.BLACK);
 
-        ChatSyncChannel.sendMessage((CharSequence) eb.build()).queue();
+        ChatSyncChannel.sendMessageEmbeds(eb.build()).queue();
     }
 }
