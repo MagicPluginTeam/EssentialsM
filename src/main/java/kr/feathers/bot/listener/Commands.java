@@ -19,10 +19,7 @@ public class Commands extends ListenerAdapter {
     private static final Logger log = MagicPluginMain.getInstance().getLogger();
 
     public void onMessageReceived(MessageReceivedEvent e) {
-        log.info("Message Received!");
-
         if (!e.getMessage().getContentRaw().startsWith(BotCommandPrefix)) { return; }
-
         if (e.getAuthor().isBot()) { return; }
 
         if (!e.isFromGuild()) {
@@ -35,10 +32,7 @@ public class Commands extends ListenerAdapter {
         Message msg = e.getMessage();
         String[] args = msg.getContentDisplay().split(" ");
 
-        if (args[0].equalsIgnoreCase(BotCommandPrefix + "hello")) {
-            tc.sendMessage("Hello, " + user.getAsMention() + "!").queue();
-        }
-        else if (args[0].equalsIgnoreCase(BotCommandPrefix + "verify")) {
+        if (args[0].equalsIgnoreCase(BotCommandPrefix + "verify")) {
             if (!tc.getId().equals(VerifyChannelID)) {
                 tc.sendMessage("You can only use this command in the verify channel.").queue();
                 return;

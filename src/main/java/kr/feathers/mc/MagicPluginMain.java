@@ -1,6 +1,8 @@
 package kr.feathers.mc;
 
-import kr.feathers.mc.Listener.JoinQuit;
+import kr.feathers.bot.utils.ChatSyncUtils;
+import kr.feathers.mc.listener.ChatSync;
+import kr.feathers.mc.listener.JoinQuit;
 import kr.feathers.mc.commands.MPCommand;
 import kr.feathers.mc.utils.ConfigUtils;
 import kr.feathers.mc.utils.DataContainor;
@@ -12,6 +14,7 @@ import javax.security.auth.login.LoginException;
 import java.util.logging.Logger;
 
 import static kr.feathers.bot.MagicPluginBot.initJDA;
+import static kr.feathers.bot.MagicPluginBot.jda;
 import static org.bukkit.Bukkit.getPluginCommand;
 import static org.bukkit.Bukkit.getPluginManager;
 
@@ -38,6 +41,7 @@ public class MagicPluginMain extends JavaPlugin implements CommandExecutor {
 
         /* ## <- Setting Event Listener -> ## */
         getPluginManager().registerEvents(new JoinQuit(), this);
+        getPluginManager().registerEvents(new ChatSync(), this);
 
         try {
             initJDA();
@@ -51,6 +55,8 @@ public class MagicPluginMain extends JavaPlugin implements CommandExecutor {
 
     @Override
     public void onDisable() {
+        jda.shutdown();
+
         log.info("[ <- MagicPlugin Disabled -> ]");
     }
 }

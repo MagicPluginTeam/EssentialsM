@@ -1,10 +1,11 @@
 package kr.feathers.bot;
 
 import kr.feathers.bot.listener.Commands;
+import kr.feathers.bot.utils.RichPresenceUtils;
+import kr.feathers.mc.listener.ChatSync;
 import kr.feathers.mc.utils.DataContainor;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
 
 import javax.security.auth.login.LoginException;
@@ -20,13 +21,22 @@ public class MagicPluginBot {
             VerifiedRoleID;
 
     public static void initJDA() throws LoginException {
+        /* [ <-- Init Variables --> ] */
         initVars();
 
+        /* [ <-- Build JDA --> ] */
         jda = JDABuilder.createDefault(BotToken).build();
 
+        /* [ <-- Add Listener --> ] */
         jda.addEventListener(new Commands());
-        jda.getPresence().setStatus(OnlineStatus.ONLINE);
-        jda.getPresence().setPresence(Activity.playing("FEATHER SERVER"), true);
+        jda.addEventListener(new ChatSync());
+
+        /* [ <-- Set Rich Presence --> ] */
+        RichPresenceUtils.setStatus(DataContainor.getBotStatus());
+        RichPresenceUtils.setActivity(Activity.playing(DataContainor.getBotRichPresence()), true);
+
+        /* [ <-- Other Inits... --> ] */
+
     }
 
     public static void initVars() {
