@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'yejunho10.magicplugin'
-version = '0.6-Dev'
+version = '1.0-Dev'
 
 repositories {
     mavenCentral()
@@ -29,6 +29,19 @@ dependencies {
 
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+}
+
+
+
+task copyJar {
+    copy {
+        from("$buildDir/libs/MagicPlugin-1.0-Dev-all.jar")
+        into("$projectDir/output/")
+    }
+
+}
+task cleanPath {
+    delete("$buildDir")
 }
 
 compileJava {
