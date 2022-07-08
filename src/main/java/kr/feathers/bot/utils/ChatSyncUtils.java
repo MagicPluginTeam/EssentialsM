@@ -1,6 +1,6 @@
 package kr.feathers.bot.utils;
 
-import kr.feathers.mc.utils.DataContainor;
+import kr.feathers.utils.DataContainor;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
 import org.bukkit.Bukkit;
@@ -52,18 +52,6 @@ public class ChatSyncUtils {
                 .setAuthor(str)
                 .setDescription("Now Online: " + (Bukkit.getOnlinePlayers().size() - 1) + " / " + Bukkit.getMaxPlayers())
                 .setColor(Color.red);
-
-        ChatSyncChannel.sendMessageEmbeds(eb.build()).queue();
-    }
-
-    public static void sendGoalAdvancement(Player GoalPlayer, Advancement advancement) {
-        String str = DataContainor.getGoalAdvancementMessage()
-                .replace("%player%", GoalPlayer.getName())
-                .replace("%advancement_name%", advancement.getDisplay().getTitle());
-
-        EmbedBuilder eb = new EmbedBuilder()
-                .setAuthor(str)
-                .setColor(Color.YELLOW);
 
         ChatSyncChannel.sendMessageEmbeds(eb.build()).queue();
     }

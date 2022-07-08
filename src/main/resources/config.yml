@@ -19,6 +19,7 @@ Quit:
 ## <- DiscordBot Settings -> ##
 BotToken: "YOUR_BOT_TOKEN"
 BotCommandPrefix: "!"
+VerifyCommandEnabled: false
 BotStatus:
   richPresence: "FEATHER ANARCHY"
   status: "ONLINE" #[ "online", "idle", "dnd", "invisible", "offline" ]#
@@ -34,11 +35,102 @@ VerifiedRoleID: "YOUR_ROLE_ID"
 ## <- ChaySync Settings -> ##
 ChatSync:
   message: "%player% » %message%"   #[ you can use %player% / %message%]#
-  joinMessage: "**%player%** joined the server!"  #[ you can use %player% ]#
-  quitMessage: "**%player%** left the server!"  #[ you can use %player% ]#
-  goalAdvancementMessage: "**%player%** has made the advancement: **%advancement_name%**!"  #[ you can use %player% / %advancement_name% ]#
+  joinMessage: "%player% joined the server!"  #[ you can use %player% ]#
+  quitMessage: "%player% left the server!"  #[ you can use %player% ]#
   playerDeathMessage: "%cause%"  #[ you can use %player%, %cause% ]#
   messageReceivedFromDiscord: "§b[§6Discord§b] §7%user_name% » %message%"  #[ you can use %user_name% / %message% ]#
+EnabledChatSync:
+  chat: true
+  join: true
+  quit: true
+  death: true
+
+## [ <- PVP System ->] ##
+PVPBattle:
+  enable: true
+  time: -1 # [ If pvp is not end in this time, it will be drawn game. | -1 = Disable ] #
+
+PVPStadium: #[ It must be a 5 Stadium ] #
+  1:
+    enable: false
+    spawn:
+      1:
+        world: "world"
+        x: 0
+        y: 0
+        z: 0
+      2:
+        world: "world"
+        x: 0
+        y: 0
+        z: 0
+
+  2:
+    enable: false
+    spawn:
+      1:
+        world: "world"
+        x: 0
+        y: 0
+        z: 0
+      2:
+        world: "world"
+        x: 0
+        y: 0
+        z: 0
+  3:
+    enable: false
+    spawn:
+      1:
+        world: "world"
+        x: 0
+        y: 0
+        z: 0
+      2:
+        world: "world"
+        x: 0
+        y: 0
+        z: 0
+  4:
+    enable: false
+    spawn:
+      1:
+        world: "world"
+        x: 0
+        y: 0
+        z: 0
+      2:
+        world: "world"
+        x: 0
+        y: 0
+        z: 0
+  5:
+    enable: false
+    spawn:
+      1:
+        world: "world"
+        x: 0
+        y: 0
+        z: 0
+      2:
+        world: "world"
+        x: 0
+        y: 0
+        z: 0
+
+PVPRank:
+  enable: true
+  reward:
+    enable: true
+    1:
+      item: "NETHERITE_INGOT"
+      amount: 1
+    2:
+      item: "DIAMOND"
+      amount: 64
+    3:
+      item: "DIAMOND"
+      amount: 20
 
 ## [ <-- By AMD_5900X -->] ##
 ## [ <-- Contact: 호예준#3840 -->] ##

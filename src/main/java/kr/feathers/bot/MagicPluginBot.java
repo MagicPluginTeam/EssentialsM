@@ -3,7 +3,7 @@ package kr.feathers.bot;
 import kr.feathers.bot.listener.Commands;
 import kr.feathers.bot.utils.RichPresenceUtils;
 import kr.feathers.mc.listener.ChatSync;
-import kr.feathers.mc.utils.DataContainor;
+import kr.feathers.utils.DataContainor;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;

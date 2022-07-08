@@ -1,11 +1,11 @@
 package kr.feathers.mc;
 
-import kr.feathers.bot.utils.ChatSyncUtils;
 import kr.feathers.mc.listener.ChatSync;
+import kr.feathers.mc.listener.Event;
 import kr.feathers.mc.listener.JoinQuit;
 import kr.feathers.mc.commands.MPCommand;
 import kr.feathers.mc.utils.ConfigUtils;
-import kr.feathers.mc.utils.DataContainor;
+import kr.feathers.utils.DataContainor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -42,6 +42,7 @@ public class MagicPluginMain extends JavaPlugin implements CommandExecutor {
         /* ## <- Setting Event Listener -> ## */
         getPluginManager().registerEvents(new JoinQuit(), this);
         getPluginManager().registerEvents(new ChatSync(), this);
+        getPluginManager().registerEvents(new Event(), this);
 
         try {
             initJDA();

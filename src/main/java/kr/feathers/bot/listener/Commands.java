@@ -1,6 +1,7 @@
 package kr.feathers.bot.listener;
 
 import kr.feathers.mc.MagicPluginMain;
+import kr.feathers.utils.DataContainor;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
@@ -33,6 +34,8 @@ public class Commands extends ListenerAdapter {
         String[] args = msg.getContentDisplay().split(" ");
 
         if (args[0].equalsIgnoreCase(BotCommandPrefix + "verify")) {
+            if (!DataContainor.isVerifyCommandEnabled()) { return; }
+
             if (!tc.getId().equals(VerifyChannelID)) {
                 tc.sendMessage("You can only use this command in the verify channel.").queue();
                 return;

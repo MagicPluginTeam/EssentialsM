@@ -1,6 +1,7 @@
 package kr.feathers.mc.commands;
 
 import kr.feathers.mc.MagicPluginMain;
+import kr.feathers.mc.utils.RandomCoordinate;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -32,6 +33,17 @@ public class MPCommand implements CommandExecutor {
             p.sendMessage("");
             p.sendMessage("§6Check your ping: §c/mp ping");
             p.sendMessage("");
+        }
+        else if (args[0].equalsIgnoreCase("rtp")) {
+            if (!p.getWorld().getName().equals("world")) {
+                p.sendMessage(prefix + " §cYou can only use this command in world.");
+                return false;
+            }
+
+            p.teleport(RandomCoordinate.getRandomLocation(p, 100, 5000, 100, 5000));
+            p.sendMessage(prefix + " §cYou have been teleported to a random location.");
+
+            return true;
         }
         else {
             p.sendMessage(prefix + " §cTry this: §6/mp help");

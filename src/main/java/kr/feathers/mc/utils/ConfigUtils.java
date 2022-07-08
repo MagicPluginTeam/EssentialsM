@@ -1,6 +1,7 @@
 package kr.feathers.mc.utils;
 
 import kr.feathers.mc.MagicPluginMain;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -12,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+/* Original: https://github.com/darksoldier1404/DPP-Core/blob/master/src/main/java/com/darksoldier1404/dppc/utils/ConfigUtils.java */
 @SuppressWarnings("all")
 public class ConfigUtils {
-    /* ## <- Original Code From: darksoldier1404 -> ## */
 
     private static final MagicPluginMain core = MagicPluginMain.getInstance();
     private static final Logger log = core.getLogger();
@@ -25,6 +26,8 @@ public class ConfigUtils {
         if (!fconfig.exists()) {
             plugin.saveResource("config.yml", false);
             log.info(plugin.getName() + " 콘피그 파일 생성.");
+            Bukkit.getPluginManager().disablePlugin(plugin);
+            log.info(plugin.getName() + " 플러그인 비활성화");
         }
         log.info(plugin.getName() + " 콘피그 파일 불러오기 성공.");
         return YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "config.yml"));

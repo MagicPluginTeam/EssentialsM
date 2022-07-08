@@ -1,7 +1,12 @@
-package kr.feathers.mc.utils;
+package kr.feathers.utils;
 
 import kr.feathers.mc.MagicPluginMain;
+import kr.feathers.utils.Quadruple;
 import net.dv8tion.jda.api.OnlineStatus;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
 import static kr.feathers.mc.MagicPluginMain.config;
 
@@ -82,10 +87,6 @@ public class DataContainor {
         return config.getString("ChatSync.quitMessage");
     }
 
-    public static String getGoalAdvancementMessage() {
-        return config.getString("ChatSync.goalAdvancementMessage");
-    }
-
     public static String getPlayerDeathMessage() {
         return config.getString("ChatSync.playerDeathMessage");
     }
@@ -98,11 +99,61 @@ public class DataContainor {
             return config.getString("ChatSync.messageReceivedFromDiscord");
     }
 
-    public static String getServerStatusToChatSyncChannel() {
-        return config.getString("ServerStatus.ChatSyncChannel");
+    public static Boolean isPVPBattleEnabled() {
+        return config.getBoolean("PVPBattle.enable");
     }
 
-    public static Integer getServerStatusUpdateInterval() {
-        return config.getInt("ServerStatus.UpdateInterval");
+    public static Integer getPVPBattleTme() {
+        return config.getInt("PVPBattle.time");
+    }
+
+    public static Boolean isPVPStadium1Enabled() {
+        return config.getBoolean("PVPStadium.1.enable");
+    }
+
+    public static Boolean isPVPStadium2Enabled() {
+        return config.getBoolean("PVPStadium.2.enable");
+    }
+
+    public static Boolean isPVPStadium3Enabled() {
+        return config.getBoolean("PVPStadium.3.enable");
+    }
+
+    public static Boolean isPVPStadium4Enabled() {
+        return config.getBoolean("PVPStadium.4.enable");
+    }
+
+    public static Boolean isPVPStadium5Enabled() {
+        return config.getBoolean("PVPStadium.5.enable");
+    }
+
+    public static Location getPVPStadiumSpawn(Integer stadiumNum, Integer spawnNum) {
+        if (stadiumNum < 1 || stadiumNum > 5) { return null; }
+        if (spawnNum < 1 || spawnNum > 2) { return null; }
+
+        String key = "PVPStadium." + stadiumNum + ".spawn." + spawnNum;
+
+        return new Location(Bukkit.getWorld(config.getString(key + ".world")),
+                config.getDouble(key + ".x"),
+                config.getDouble(key + ".y"),
+                config.getDouble(key + ".z"));
+    }
+
+    public static Boolean isPVPRankEnabled() {
+        return config.getBoolean("PVPRank.enable");
+    }
+
+    public static Boolean isPVPRankRewardEnabled() {
+        return config.getBoolean("PVPRank.reward.enable");
+    }
+
+    public static ItemStack getPVPRankRewardItem(Integer rank) {
+        if (rank < 1 || rank > 3) { return null; }
+
+        return new ItemStack(Material.getMaterial(config.getString("PVPRank.reward." + rank + ".item")), config.getInt("PVPRank.reward." + rank + ".amount"));
+    }
+
+    public static Boolean isVerifyCommandEnabled() {
+        return config.getBoolean("VerifyCommandEnabled");
     }
 }
