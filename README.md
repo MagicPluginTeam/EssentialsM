@@ -1,1 +1,2 @@
-# MagicPlugin3
+# EssentialsM
+  -> Essentials (MagicPlugin)
