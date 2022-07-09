@@ -74,7 +74,7 @@ public class DataContainor {
             case "offline":
                 return OnlineStatus.OFFLINE;
             default:
-                MagicPluginMain.getInstance().getLogger().warning("Invalid status in config.yml & set status to online");
+                Bukkit.getLogger().warning("Invalid status in config.yml & set status to online");
                 return OnlineStatus.ONLINE;
         }
     }

@@ -50,4 +50,6 @@ compileJava {
 
 jar {
     finalizedBy shadowJar
+
+    copyJar
 }

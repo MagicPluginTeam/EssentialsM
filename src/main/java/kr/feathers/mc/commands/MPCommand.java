@@ -29,11 +29,6 @@ public class MPCommand implements CommandExecutor {
         else if (args[0].equalsIgnoreCase("ping")) {
             p.sendMessage(prefix + " §cPing: §6" + p.getPing());
         }
-        else if (args[0].equalsIgnoreCase("help")) {
-            p.sendMessage("");
-            p.sendMessage("§6Check your ping: §c/mp ping");
-            p.sendMessage("");
-        }
         else if (args[0].equalsIgnoreCase("rtp")) {
             if (!p.getWorld().getName().equals("world")) {
                 p.sendMessage(prefix + " §cYou can only use this command in world.");
@@ -44,6 +39,12 @@ public class MPCommand implements CommandExecutor {
             p.sendMessage(prefix + " §cYou have been teleported to a random location.");
 
             return true;
+        }
+        else if (args[0].equalsIgnoreCase("help")) {
+            p.sendMessage("");
+            p.sendMessage("§6Check your ping: §c/mp ping");
+            p.sendMessage("§6Teleport to a random location: §c/mp rtp");
+            p.sendMessage("");
         }
         else {
             p.sendMessage(prefix + " §cTry this: §6/mp help");

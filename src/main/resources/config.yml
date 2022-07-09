@@ -3,7 +3,7 @@
 ## [ <-- Item Code: https://minecraftitemids.com/ --> ] ##
 #                     ⌜ We Need Numerical ID ⌟           #
 
-## <- Settings -> ##
+## <------------------------- Minecraft Settings -------------------------> ##
 LogPrefix: "§a[§bMagicPlugin§a]"
 
 ## <- CustomJoinMessage -> ##
@@ -16,20 +16,26 @@ Quit:
   enable: true
   message: "§9[§a-§9] §7%player%"   #[ you can use %player% ]#
 
-## <- DiscordBot Settings -> ##
+## <- CustomShop -> ##
+Shop:
+  enable: true
+  shops:
+    "example_shop.yml"
+
+## <------------------------- DiscordBot Settings -------------------------> ##
 BotToken: "YOUR_BOT_TOKEN"
 BotCommandPrefix: "!"
 VerifyCommandEnabled: false
 BotStatus:
   richPresence: "FEATHER ANARCHY"
-  status: "ONLINE" #[ "online", "idle", "dnd", "invisible", "offline" ]#
+  status: "online" #[ "online", "idle", "dnd", "invisible", "offline" ]#
 
-# [Channel ID] #
+## <- [Channel ID] -> ##
 WelcomeByeChannelID: "YOUR_CHANNEL_ID"
 VerifyChannelID: "YOUR_CHANNEL_ID"
 ChatSyncChannelID: "YOUR_CHANNEL_ID"
 
-# [Role ID] #
+## <- [Role ID] -> ##
 VerifiedRoleID: "YOUR_ROLE_ID"
 
 ## <- ChaySync Settings -> ##
@@ -44,93 +50,6 @@ EnabledChatSync:
   join: true
   quit: true
   death: true
-
-## [ <- PVP System ->] ##
-PVPBattle:
-  enable: true
-  time: -1 # [ If pvp is not end in this time, it will be drawn game. | -1 = Disable ] #
-
-PVPStadium: #[ It must be a 5 Stadium ] #
-  1:
-    enable: false
-    spawn:
-      1:
-        world: "world"
-        x: 0
-        y: 0
-        z: 0
-      2:
-        world: "world"
-        x: 0
-        y: 0
-        z: 0
-
-  2:
-    enable: false
-    spawn:
-      1:
-        world: "world"
-        x: 0
-        y: 0
-        z: 0
-      2:
-        world: "world"
-        x: 0
-        y: 0
-        z: 0
-  3:
-    enable: false
-    spawn:
-      1:
-        world: "world"
-        x: 0
-        y: 0
-        z: 0
-      2:
-        world: "world"
-        x: 0
-        y: 0
-        z: 0
-  4:
-    enable: false
-    spawn:
-      1:
-        world: "world"
-        x: 0
-        y: 0
-        z: 0
-      2:
-        world: "world"
-        x: 0
-        y: 0
-        z: 0
-  5:
-    enable: false
-    spawn:
-      1:
-        world: "world"
-        x: 0
-        y: 0
-        z: 0
-      2:
-        world: "world"
-        x: 0
-        y: 0
-        z: 0
-
-PVPRank:
-  enable: true
-  reward:
-    enable: true
-    1:
-      item: "NETHERITE_INGOT"
-      amount: 1
-    2:
-      item: "DIAMOND"
-      amount: 64
-    3:
-      item: "DIAMOND"
-      amount: 20
 
 ## [ <-- By AMD_5900X -->] ##
 ## [ <-- Contact: 호예준#3840 -->] ##

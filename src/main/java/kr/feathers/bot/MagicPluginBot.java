@@ -7,12 +7,15 @@ import kr.feathers.utils.DataContainor;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
+import org.bukkit.Bukkit;
 
 import javax.security.auth.login.LoginException;
+import java.util.logging.Logger;
 
 @SuppressWarnings("all")
 public class MagicPluginBot {
     public static JDA jda;
+    public static Logger log = Bukkit.getLogger();
     public static String BotToken,
             BotCommandPrefix,
             WelcomeByeChannelID,
@@ -23,6 +26,12 @@ public class MagicPluginBot {
     public static void initJDA() throws LoginException {
         /* [ <-- Init Variables --> ] */
         initVars();
+
+        if (BotToken.equals("YOUR_BOT_TOKEN")) {
+            log.warning("Bot Token is empty, please set it in config.yml");
+            log.warning("Disabling JDA!");
+            return;
+        }
 
         /* [ <-- Build JDA --> ] */
         jda = JDABuilder.createDefault(BotToken).build();
