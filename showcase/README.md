@@ -1,5 +1,5 @@
 # EssentialsM
-![logo](/img/logo.png)
+![logo](/showcase/img/logo.png)
 
 ***
 EssentialsM is a collection of useful tools for Minecraft.

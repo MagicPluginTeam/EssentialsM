@@ -57,10 +57,10 @@ public class MagicPluginMain extends JavaPlugin implements CommandExecutor {
 
         console.sendMessage("");
         console.sendMessage("§3     __   __  _______       ");
-        console.sendMessage("§3    |  |_|  ||       |      §cEnabling §6EssentialsM");
-        console.sendMessage("§3    |       ||    _  |      §4■ Authors: §7" + getDescription().getAuthors().toString());
-        console.sendMessage("§3    |       ||   |_| |      §4■ Version: §7" + getDescription().getVersion());
-        console.sendMessage("§3    |       ||    ___|      §4■ Special Thanks to: §7darksoldier1404");
+        console.sendMessage("§3    |  |_|  ||       |      §6[ Enabling EssentialsM ]");
+        console.sendMessage("§3    |       ||    _  |      §c■ Authors: §7" + getDescription().getAuthors().toString());
+        console.sendMessage("§3    |       ||   |_| |      §c■ Version: §7" + getDescription().getVersion());
+        console.sendMessage("§3    |       ||    ___|      §c■ Special Thanks to: §7darksoldier1404");
         console.sendMessage("§3    | ||_|| ||   |          §b■ Copyright 2022, MagicPluginTeam");
         console.sendMessage("§3    |_|   |_||___|          ");
         console.sendMessage("");
@@ -69,7 +69,7 @@ public class MagicPluginMain extends JavaPlugin implements CommandExecutor {
     @Override
     public void onDisable() {
         if (!(jda == null)) {
-            jda.shutdownNow();
+            jda.shutdown();
         }
         else {
             log.warning("§cBot token is not available, do not shutting down JDA.");
@@ -77,10 +77,10 @@ public class MagicPluginMain extends JavaPlugin implements CommandExecutor {
 
         console.sendMessage("");
         console.sendMessage("§3     __   __  _______       ");
-        console.sendMessage("§3    |  |_|  ||       |      §cDisabling §6EssentialsM");
-        console.sendMessage("§3    |       ||    _  |      §4■ Authors: §7" + getDescription().getAuthors().toString());
-        console.sendMessage("§3    |       ||   |_| |      §4■ Version: §7" + getDescription().getVersion());
-        console.sendMessage("§3    |       ||    ___|      §4■ Special Thanks to: §7darksoldier1404");
+        console.sendMessage("§3    |  |_|  ||       |      §6[ Disabling EssentialsM ]");
+        console.sendMessage("§3    |       ||    _  |      §c■ Authors: §7" + getDescription().getAuthors().toString());
+        console.sendMessage("§3    |       ||   |_| |      §c■ Version: §7" + getDescription().getVersion());
+        console.sendMessage("§3    |       ||    ___|      §c■ Special Thanks to: §7darksoldier1404");
         console.sendMessage("§3    | ||_|| ||   |          §b■ Copyright 2022, MagicPluginTeam");
         console.sendMessage("§3    |_|   |_||___|          ");
         console.sendMessage("");
