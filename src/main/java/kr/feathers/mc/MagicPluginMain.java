@@ -36,9 +36,9 @@ public class MagicPluginMain extends JavaPlugin implements CommandExecutor {
     public void onEnable() {
         plugin = this;
         config = ConfigUtils.loadDefaultPluginConfig(plugin);
-        log = getLogger();
-        prefix = DataContainor.getPrefix();
+        log = Bukkit.getLogger();
         console = Bukkit.getConsoleSender();
+        prefix = DataContainor.getPrefix();
 
         /* ## <- Setting Executor -> ## */
         getPluginCommand("mp").setExecutor(new MPCommand());
@@ -72,7 +72,7 @@ public class MagicPluginMain extends JavaPlugin implements CommandExecutor {
             jda.shutdown();
         }
         else {
-            log.warning("§cBot token is not available, do not shutting down JDA.");
+            log.warning("Bot token is not available, null JDA!");
         }
 
         console.sendMessage("");

@@ -1,7 +1,7 @@
 package kr.feathers.mc.commands;
 
 import kr.feathers.mc.MagicPluginMain;
-import kr.feathers.mc.utils.RandomCoordinate;
+import kr.feathers.mc.utils.LocationUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -27,7 +27,7 @@ public class MPCommand implements CommandExecutor {
         }
 
         else if (args[0].equalsIgnoreCase("ping")) {
-            p.sendMessage(prefix + " §cPing: §6" + p.getPing());
+            p.sendMessage(prefix + " §cYour Ping: §6" + p.getPing());
         }
         else if (args[0].equalsIgnoreCase("rtp")) {
             if (!p.getWorld().getName().equals("world")) {
@@ -35,20 +35,22 @@ public class MPCommand implements CommandExecutor {
                 return false;
             }
 
-            p.teleport(RandomCoordinate.getRandomLocation(p, 100, 5000, 100, 5000));
+            p.teleport(LocationUtils.getRandomLocation(p, 100, 5000, 100, 5000));
             p.sendMessage(prefix + " §cYou have been teleported to a random location.");
 
             return true;
         }
+        else if (args[0].equalsIgnoreCase("reload")) {
+            //TODO - 코드 개 지랄 났네
+            p.sendMessage(prefix + " §cConfig has been reloaded.");
+        }
         else if (args[0].equalsIgnoreCase("help")) {
-            p.sendMessage("");
-            p.sendMessage("§6Check your ping: §c/mp ping");
-            p.sendMessage("§6Teleport to a random location: §c/mp rtp");
-            p.sendMessage("");
+            p.sendMessage(prefix + " §cHelp: §6/mp ping §c- §fCheck your ping.");
+            p.sendMessage(prefix + " §cHelp: §6/mp rtp §c- §fTeleport to a random location.");
+            p.sendMessage(prefix + " §cHelp: §6/mp reload §c- §fReload config.");
         }
         else {
             p.sendMessage(prefix + " §cTry this: §6/mp help");
-            return true;
         }
 
         return false;

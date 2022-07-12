@@ -8,65 +8,14 @@
 #|           \ \____/\/\____/\/\____/\ \____\\ \_\ \_\   \ \__\  \ \_\\ \__/.\_\   /\____\\/\____/  \ \_\\ \_\             |#
 #|            \/___/  \/___/  \/___/  \/____/ \/_/\/_/    \/__/   \/_/ \/__/\/_/   \/____/ \/___/    \/_/ \/_/             |#
 #|                                                                                                                         |#
-#|                                           This is config file of EssentialsM                                            |#
-#|                                            Thanks for downloading our plugin                                            |#
+#|                                       This is message custom file of EssentialsM                                        |#
 #|                                                                                                                         |#
 #|                                            Copyright 2022, MagicPlugin Team                                             |#
 #|                                                                                                                         |#
 #+-------------------------------------------------------------------------------------------------------------------------+#
-#|                                     Plugin Owner's DM: http://web.feather-s.kr/dm/                                      |#
+#|                                      Plugin Owner DM: http://web.feather-s.kr/dm/                                       |#
 #|                                     Color Code: http://web.feather-s.kr:100/colors/                                     |#
 #+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+#
 #############################################################################################################################
 
-
-#+---------------------------------------------------Minecraft Settings----------------------------------------------------+#
-LogPrefix: "§l§6|§7§rMP§6|§r"
-
-#+--------CustomJoinQuitMessage--------+#
-#|       [ you can use %player% ]      |#
-#+-------------------------------------+#
-Join:
-  enable: true
-  message: "§9[§a+§9] §7%player%"
-Quit:
-  enable: true
-  message: "§9[§a-§9] §7%player%"
-
-#+-----------CustomShopList------------+#
-#| you need to generate other yml file |#
-#+-------------------------------------+#
-Shop:
-  enable: true
-  shops:
-    - "example_shop.yml"
-
-#+--------------------------------------------------Discord Bot Settings---------------------------------------------------+#
-BotToken: "YOUR_BOT_TOKEN"
-BotCommandPrefix: "!"
-BotStatus:
-  richPresence: "FEATHER ANARCHY"
-  status: "online" #[ "online", "idle", "dnd", "invisible", "offline" ]#
-
-#+--------EnableDiscordCommand---------+#
-VerifyCommandEnabled: false
-
-#+-------------Channel ID--------------+#
-VerifyChannelID: "YOUR_CHANNEL_ID"
-ChatSyncChannelID: "YOUR_CHANNEL_ID"
-
-#+---------------Role ID---------------+#
-VerifiedRoleID: "YOUR_ROLE_ID"
-
-#+----------ChaySync Settings----------+#
-ChatSync:
-  message: "%player% » %message%"   #[ you can use %player% / %message%]#
-  joinMessage: "%player% joined the server!"  #[ you can use %player% ]#
-  quitMessage: "%player% left the server!"  #[ you can use %player% ]#
-  playerDeathMessage: "%cause%"  #[ you can use %player%, %cause% ]#
-  messageReceivedFromDiscord: "§b[§6Discord§b] §7%user_name% » %message%"  #[ you can use %user_name% / %message% ]#
-EnabledChatSync:
-  chat: true
-  join: true
-  quit: true
-  death: true
+#+----------------------------------------------------Message Settings-----------------------------------------------------+#

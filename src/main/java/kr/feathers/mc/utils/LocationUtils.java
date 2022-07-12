@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import java.util.concurrent.ThreadLocalRandom;
 
 @SuppressWarnings("all")
-public class RandomCoordinate {
+public class LocationUtils {
     public static Location getRandomLocation(Player p, int minx, int maxx, int minz, int maxz) {
         Location loc;
         int x, y, z;

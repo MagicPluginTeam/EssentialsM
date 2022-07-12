@@ -1,6 +1,6 @@
 package kr.feathers.mc.listener;
 
-import kr.feathers.mc.utils.RandomCoordinate;
+import kr.feathers.mc.utils.LocationUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,7 +17,7 @@ public class Event implements Listener {
 
         if (e.isBedSpawn() || e.isAnchorSpawn()) { return; }
 
-        e.setRespawnLocation(RandomCoordinate.getRandomLocation(p, 100, 5000, 100, 5000));
+        e.setRespawnLocation(LocationUtils.getRandomLocation(p, 100, 5000, 100, 5000));
         p.sendMessage(prefix + " §cYou have been spawned in random location.");
     }
 }
