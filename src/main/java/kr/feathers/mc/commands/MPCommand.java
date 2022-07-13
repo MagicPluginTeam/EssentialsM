@@ -42,7 +42,6 @@ public class MPCommand implements CommandExecutor {
         }
         else if (args[0].equalsIgnoreCase("reload")) {
             //TODO - 코드 개 지랄 났네
-            p.sendMessage(prefix + " §cConfig has been reloaded.");
         }
         else if (args[0].equalsIgnoreCase("help")) {
             p.sendMessage(prefix + " §cHelp: §6/mp ping §c- §fCheck your ping.");

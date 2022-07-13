@@ -33,6 +33,21 @@ Quit:
   enable: true
   message: "§9[§a-§9] §7%player%"
 
+#+----------------AFK------------------+#
+#|  teleport when player didn't move   |#
+#+-------------------------------------+#
+AFK:
+  enable: true
+  time: 60 #[ seconds ]#
+  message: "§9[§aAFK§9] §7%player%, You are §cAFK §7now."
+  teleport:
+    enable: true
+    location:
+      world: "world"
+      x: 0
+      y: 64
+      z: 0
+
 #+-----------CustomShopList------------+#
 #| you need to generate other yml file |#
 #+-------------------------------------+#

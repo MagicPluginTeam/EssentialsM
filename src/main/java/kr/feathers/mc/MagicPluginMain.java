@@ -1,10 +1,8 @@
 package kr.feathers.mc;
 
-import kr.feathers.mc.listener.ChatSync;
-import kr.feathers.mc.listener.Event;
-import kr.feathers.mc.listener.JoinQuit;
-import kr.feathers.mc.commands.MPCommand;
+import kr.feathers.mc.manager.SchedulerManager;
 import kr.feathers.mc.utils.ConfigUtils;
+import kr.feathers.mc.utils.InitUtils;
 import kr.feathers.utils.DataContainor;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
@@ -13,12 +11,11 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import javax.security.auth.login.LoginException;
+import java.io.File;
 import java.util.logging.Logger;
 
 import static kr.feathers.bot.MagicPluginBot.initJDA;
 import static kr.feathers.bot.MagicPluginBot.jda;
-import static org.bukkit.Bukkit.getPluginCommand;
-import static org.bukkit.Bukkit.getPluginManager;
 
 @SuppressWarnings("all")
 public class MagicPluginMain extends JavaPlugin implements CommandExecutor {
@@ -34,27 +31,6 @@ public class MagicPluginMain extends JavaPlugin implements CommandExecutor {
 
     @Override
     public void onEnable() {
-        plugin = this;
-        config = ConfigUtils.loadDefaultPluginConfig(plugin);
-        log = Bukkit.getLogger();
-        console = Bukkit.getConsoleSender();
-        prefix = DataContainor.getPrefix();
-
-        /* ## <- Setting Executor -> ## */
-        getPluginCommand("mp").setExecutor(new MPCommand());
-
-        /* ## <- Setting Event Listener -> ## */
-        getPluginManager().registerEvents(new JoinQuit(), this);
-        getPluginManager().registerEvents(new ChatSync(), this);
-        getPluginManager().registerEvents(new Event(), this);
-
-        try {
-            initJDA();
-        }
-        catch (LoginException e) {
-            e.printStackTrace();
-        }
-
         console.sendMessage("");
         console.sendMessage("§3     __   __  _______       ");
         console.sendMessage("§3    |  |_|  ||       |      §6[ Enabling EssentialsM ]");
@@ -64,17 +40,12 @@ public class MagicPluginMain extends JavaPlugin implements CommandExecutor {
         console.sendMessage("§3    | ||_|| ||   |          §b■ Copyright 2022, MagicPluginTeam");
         console.sendMessage("§3    |_|   |_||___|          ");
         console.sendMessage("");
+
+        init();
     }
 
     @Override
     public void onDisable() {
-        if (!(jda == null)) {
-            jda.shutdown();
-        }
-        else {
-            log.warning("Bot token is not available, null JDA!");
-        }
-
         console.sendMessage("");
         console.sendMessage("§3     __   __  _______       ");
         console.sendMessage("§3    |  |_|  ||       |      §6[ Disabling EssentialsM ]");
@@ -84,6 +55,41 @@ public class MagicPluginMain extends JavaPlugin implements CommandExecutor {
         console.sendMessage("§3    | ||_|| ||   |          §b■ Copyright 2022, MagicPluginTeam");
         console.sendMessage("§3    |_|   |_||___|          ");
         console.sendMessage("");
+
+        if (!(jda == null)) {
+            jda.shutdown();
+        }
+        else {
+            log.warning("Bot token is not available, null JDA!");
+        }
+    }
+
+    public void init() {
+        /* Initilize Variables */
+        plugin = this;
+        config = ConfigUtils.loadDefaultPluginConfig(plugin);
+        if (!(new File(plugin.getDataFolder(), "message.yml")).exists()) {
+            ConfigUtils.createCustomData(plugin, "messages");
+
+        }
+        log = Bukkit.getLogger();
+        console = Bukkit.getConsoleSender();
+        prefix = DataContainor.getPrefix();
+
+        /* Initilize Scheduler */
+        SchedulerManager.InitScheduler();
+
+        /* Initilize Commands */
+        InitUtils.registerEvents();
+        InitUtils.registerCommandExecutor();
+
+        /* Initilize JDA */
+        try {
+            initJDA();
+        }
+        catch (LoginException e) {
+            e.printStackTrace();
+        }
     }
 }
 

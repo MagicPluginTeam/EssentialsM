@@ -1,17 +1,14 @@
 package kr.feathers.utils;
 
-import kr.feathers.mc.MagicPluginMain;
-import kr.feathers.utils.Quadruple;
 import net.dv8tion.jda.api.OnlineStatus;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 
 import static kr.feathers.mc.MagicPluginMain.config;
 
 @SuppressWarnings("all")
 public class DataContainor {
+    /* [ <-- Public Settings --> ] */
     public static String getPrefix() {
         return config.getString("LogPrefix");
     }
@@ -33,16 +30,13 @@ public class DataContainor {
         return config.getString("Quit.message");
     }
 
+    /* [ <-- Discord Bot Settings --> ] */
     public static String getBotToken() {
         return config.getString("BotToken");
     }
 
     public static String getBotCommandPrefix() {
         return config.getString("BotCommandPrefix");
-    }
-
-    public static String getWelcomeByeChannelID() {
-        return config.getString("WelcomeByeChannelID");
     }
 
     public static String getVerifyChannelID() {
@@ -79,6 +73,12 @@ public class DataContainor {
         }
     }
 
+    public static Boolean isVerifyCommandEnabled() {
+        return config.getBoolean("VerifyCommandEnabled");
+    }
+
+    /* [ <-- ChatSync --> ] */
+
     public static String getChatSyncJoinMessage() {
         return config.getString("ChatSync.joinMessage");
     }
@@ -95,65 +95,32 @@ public class DataContainor {
         return config.getString("ChatSync.message");
     }
 
-    public static String getMessageReceivedFromDiscord() {
+    public static String getChatReceivedFromDiscordMessage() {
             return config.getString("ChatSync.messageReceivedFromDiscord");
     }
 
-    public static Boolean isPVPBattleEnabled() {
-        return config.getBoolean("PVPBattle.enable");
+    /* [ <-- AFK --> ] */
+    public static Boolean isAFKEnabled() {
+        return config.getBoolean("AFK.enable");
     }
 
-    public static Integer getPVPBattleTme() {
-        return config.getInt("PVPBattle.time");
+    public static Integer getAFKTime() {
+        return config.getInt("AFK.time");
     }
 
-    public static Boolean isPVPStadium1Enabled() {
-        return config.getBoolean("PVPStadium.1.enable");
+    public static String getAFKMessage() {
+        return config.getString("AFK.message");
     }
 
-    public static Boolean isPVPStadium2Enabled() {
-        return config.getBoolean("PVPStadium.2.enable");
+    public static Boolean isAFKTeleportEnabled() {
+        return config.getBoolean("AFK.teleport.enable");
     }
 
-    public static Boolean isPVPStadium3Enabled() {
-        return config.getBoolean("PVPStadium.3.enable");
-    }
-
-    public static Boolean isPVPStadium4Enabled() {
-        return config.getBoolean("PVPStadium.4.enable");
-    }
-
-    public static Boolean isPVPStadium5Enabled() {
-        return config.getBoolean("PVPStadium.5.enable");
-    }
-
-    public static Location getPVPStadiumSpawn(Integer stadiumNum, Integer spawnNum) {
-        if (stadiumNum < 1 || stadiumNum > 5) { return null; }
-        if (spawnNum < 1 || spawnNum > 2) { return null; }
-
-        String key = "PVPStadium." + stadiumNum + ".spawn." + spawnNum;
-
-        return new Location(Bukkit.getWorld(config.getString(key + ".world")),
-                config.getDouble(key + ".x"),
-                config.getDouble(key + ".y"),
-                config.getDouble(key + ".z"));
-    }
-
-    public static Boolean isPVPRankEnabled() {
-        return config.getBoolean("PVPRank.enable");
-    }
-
-    public static Boolean isPVPRankRewardEnabled() {
-        return config.getBoolean("PVPRank.reward.enable");
-    }
-
-    public static ItemStack getPVPRankRewardItem(Integer rank) {
-        if (rank < 1 || rank > 3) { return null; }
-
-        return new ItemStack(Material.getMaterial(config.getString("PVPRank.reward." + rank + ".item")), config.getInt("PVPRank.reward." + rank + ".amount"));
-    }
-
-    public static Boolean isVerifyCommandEnabled() {
-        return config.getBoolean("VerifyCommandEnabled");
+    public static Location getAFKTeleportLocation() {
+        return new Location(
+                Bukkit.getWorld(config.getString("AFK.teleport.location.world")),
+                config.getDouble("AFK.teleport.location.x"),
+                config.getDouble("AFK.teleport.location.y"),
+                config.getDouble("AFK.teleport.location.z"));
     }
 }

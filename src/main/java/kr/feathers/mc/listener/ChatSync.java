@@ -45,7 +45,7 @@ Configurationally
         if (!e.getTextChannel().getId().equals(DataContainor.getChatSyncChannelID())) { return; }
         if (e.getAuthor().isBot()) { return; }
 
-        String str = DataContainor.getMessageReceivedFromDiscord()
+        String str = DataContainor.getChatReceivedFromDiscordMessage()
                         .replace("%user_name%", e.getMember().getEffectiveName())
                         .replace("%message%", e.getMessage().getContentRaw());
 
