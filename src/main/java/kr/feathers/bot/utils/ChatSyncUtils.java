@@ -1,5 +1,6 @@
 package kr.feathers.bot.utils;
 
+import kr.feathers.bot.MagicPluginBot;
 import kr.feathers.utils.DataContainor;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
@@ -25,6 +26,8 @@ public class ChatSyncUtils {
     }
 
     public static void sendChatMessage(String message, Player ChatPlayer) {
+        if (!MagicPluginBot.isBotRunning()) { return; }
+
         String str = DataContainor.getChatSyncMessage()
                 .replace("%player%", "`" + ChatPlayer.getName() + "`")
                 .replace("%message%", message);
@@ -33,6 +36,8 @@ public class ChatSyncUtils {
     }
 
     public static void sendJoinMessage(Player JoinPlayer) {
+        if (!MagicPluginBot.isBotRunning()) { return; }
+
         String str = DataContainor.getChatSyncJoinMessage()
                 .replace("%player%", JoinPlayer.getName());
 
@@ -45,6 +50,8 @@ public class ChatSyncUtils {
     }
 
     public static void sendQuitMessage(Player QuitPlayer) {
+        if (!MagicPluginBot.isBotRunning()) { return; }
+
         String str = DataContainor.getChatSyncQuitMessage()
                 .replace("%player%", QuitPlayer.getName());
 
@@ -57,6 +64,8 @@ public class ChatSyncUtils {
     }
 
     public static void sendPlayerDeath(Player DeathPlayer, String cause) {
+        if (!MagicPluginBot.isBotRunning()) { return; }
+
         String str = DataContainor.getPlayerDeathMessage()
                 .replace("%player%", DeathPlayer.getName())
                 .replace("%cause%", cause);

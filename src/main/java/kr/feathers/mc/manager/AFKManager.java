@@ -23,6 +23,8 @@ public class AFKManager {
             if (playerLocations.get(p).equals(p.getLocation())) {
                 setPlayerAFKStatus(p, true);
             }
+
+            playerLocations.put(p, p.getLocation());
         }
     }
 

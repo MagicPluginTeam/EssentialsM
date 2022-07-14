@@ -15,13 +15,18 @@ import java.util.logging.Logger;
 @SuppressWarnings("all")
 public class MagicPluginBot {
     public static JDA jda;
-    public static Logger log = Bukkit.getLogger();
+    private static Boolean isBotRunning;
+    private static Logger log = Bukkit.getLogger();
     public static String BotToken,
             BotCommandPrefix,
             WelcomeByeChannelID,
             VerifyChannelID,
             ChatSyncChannelID,
             VerifiedRoleID;
+
+    public static Boolean isBotRunning() {
+        return isBotRunning;
+    }
 
     public static void initJDA() throws LoginException {
         /* [ <-- Init Variables --> ] */
@@ -30,6 +35,7 @@ public class MagicPluginBot {
         if (BotToken.equals("YOUR_BOT_TOKEN")) {
             log.warning("Bot Token is empty, please set it in config.yml");
             log.warning("Disabling JDA!");
+            isBotRunning = false;
             return;
         }
 
@@ -45,13 +51,12 @@ public class MagicPluginBot {
         RichPresenceUtils.setActivity(Activity.playing(DataContainor.getBotRichPresence()), true);
 
         /* [ <-- Other Inits... --> ] */
-
+        isBotRunning = true;
     }
 
     public static void initVars() {
         BotToken = DataContainor.getBotToken();
         BotCommandPrefix = DataContainor.getBotCommandPrefix();
-        WelcomeByeChannelID = DataContainor.getWelcomeByeChannelID();
         VerifyChannelID = DataContainor.getVerifyChannelID();
         ChatSyncChannelID = DataContainor.getChatSyncChannelID();
         VerifiedRoleID = DataContainor.getVerifiedRoleID();

@@ -1,19 +1,27 @@
 package kr.feathers.mc.commands;
 
 import kr.feathers.mc.MagicPluginMain;
+import kr.feathers.mc.utils.ConfigUtils;
 import kr.feathers.mc.utils.LocationUtils;
+import kr.feathers.utils.DataContainor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
+import static kr.feathers.mc.MagicPluginMain.config;
 import static kr.feathers.mc.MagicPluginMain.prefix;
 
 @SuppressWarnings("all")
-public class MPCommand implements CommandExecutor {
-    MagicPluginMain core = MagicPluginMain.getInstance();
+public class MPCommand implements CommandExecutor, TabCompleter {
+    MagicPluginMain plugin = MagicPluginMain.getInstance();
 
+    @Nullable
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (!(sender instanceof Player p)) {
@@ -22,7 +30,7 @@ public class MPCommand implements CommandExecutor {
         }
 
         if (args.length == 0) {
-            p.sendMessage(prefix + " §cTry this: §6/mp help");
+            p.sendMessage(prefix + " §7Wrong Command: §c/mp help");
             return false;
         }
 
@@ -41,7 +49,10 @@ public class MPCommand implements CommandExecutor {
             return true;
         }
         else if (args[0].equalsIgnoreCase("reload")) {
-            //TODO - 코드 개 지랄 났네
+            plugin.reloadConfig();
+
+            config = ConfigUtils.loadDefaultPluginConfig(plugin);
+            prefix = DataContainor.getPrefix();
         }
         else if (args[0].equalsIgnoreCase("help")) {
             p.sendMessage(prefix + " §cHelp: §6/mp ping §c- §fCheck your ping.");
@@ -53,5 +64,15 @@ public class MPCommand implements CommandExecutor {
         }
 
         return false;
+    }
+
+    @Nullable
+    @Override
+    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String labal, @NotNull String[] args) {
+        if (args.length == 1) {
+            return List.of("ping", "rtp", "reload", "help");
+        }
+        
+        return List.of("");
     }
 }

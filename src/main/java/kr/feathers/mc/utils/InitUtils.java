@@ -34,7 +34,7 @@ public class InitUtils {
     }
 
     public static void registerCommandTabCompleter() {
-        //TODO
+        getPluginCommand("mp").setTabCompleter(new MPCommand());
 
         log.info("Command TabCompleters Registered!");
     }

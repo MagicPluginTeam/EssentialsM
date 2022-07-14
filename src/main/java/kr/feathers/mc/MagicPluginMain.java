@@ -21,8 +21,8 @@ import static kr.feathers.bot.MagicPluginBot.jda;
 public class MagicPluginMain extends JavaPlugin implements CommandExecutor {
     private static MagicPluginMain plugin;
     public static YamlConfiguration config;
-    private Logger log;
-    private ConsoleCommandSender console;
+    private Logger log = Bukkit.getLogger();;
+    private ConsoleCommandSender console = Bukkit.getConsoleSender();
     public static String prefix;
 
     public static MagicPluginMain getInstance() {
@@ -31,6 +31,8 @@ public class MagicPluginMain extends JavaPlugin implements CommandExecutor {
 
     @Override
     public void onEnable() {
+        init();
+
         console.sendMessage("");
         console.sendMessage("§3     __   __  _______       ");
         console.sendMessage("§3    |  |_|  ||       |      §6[ Enabling EssentialsM ]");
@@ -40,8 +42,6 @@ public class MagicPluginMain extends JavaPlugin implements CommandExecutor {
         console.sendMessage("§3    | ||_|| ||   |          §b■ Copyright 2022, MagicPluginTeam");
         console.sendMessage("§3    |_|   |_||___|          ");
         console.sendMessage("");
-
-        init();
     }
 
     @Override
@@ -68,12 +68,6 @@ public class MagicPluginMain extends JavaPlugin implements CommandExecutor {
         /* Initilize Variables */
         plugin = this;
         config = ConfigUtils.loadDefaultPluginConfig(plugin);
-        if (!(new File(plugin.getDataFolder(), "message.yml")).exists()) {
-            ConfigUtils.createCustomData(plugin, "messages");
-
-        }
-        log = Bukkit.getLogger();
-        console = Bukkit.getConsoleSender();
         prefix = DataContainor.getPrefix();
 
         /* Initilize Scheduler */
