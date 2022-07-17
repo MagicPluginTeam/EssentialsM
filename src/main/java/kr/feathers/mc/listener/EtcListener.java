@@ -3,12 +3,11 @@ package kr.feathers.mc.listener;
 import kr.feathers.mc.utils.LocationUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import static kr.feathers.mc.MagicPluginMain.prefix;
 
-public class Event implements Listener {
+public class EtcListener implements org.bukkit.event.Listener {
     @EventHandler
     public void onRespawn(PlayerRespawnEvent e) {
         if (!e.getPlayer().getWorld().getName().equals("world")) { return; }

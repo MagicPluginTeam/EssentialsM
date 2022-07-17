@@ -2,19 +2,23 @@ package kr.feathers.mc.manager;
 
 import kr.feathers.mc.shceduler.AFKScheduler;
 import kr.feathers.utils.DataContainor;
+import org.bukkit.Bukkit;
 
+import java.util.logging.Logger;
+
+@SuppressWarnings("all")
 public class SchedulerManager {
-    public static void startAFKScheduler(long period) {
-        AFKScheduler.start(period);
-    }
+    private static final Logger log = Bukkit.getLogger();
 
-    public static void stopAFKScheduler() {
-        AFKScheduler.stop();
+    private static void startAFKScheduler(long period) {
+        AFKScheduler.start(period);
     }
 
     public static void InitScheduler() {
         if (DataContainor.isAFKEnabled()) {
             startAFKScheduler(DataContainor.getAFKTime());
         }
+
+        log.info("[EssentialsM] Schedulers Started!");
     }
 }

@@ -9,39 +9,39 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.*;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("all")
-public class ChatSync extends ListenerAdapter implements Listener {
+public class ChatSyncListener extends ListenerAdapter implements Listener {
+    @Nullable
     @EventHandler
-    public void onJoin(PlayerJoinEvent e) {
+    public void onJoin(@NotNull PlayerJoinEvent e) {
         ChatSyncUtils.sendJoinMessage(e.getPlayer());
     }
 
+    @Nullable
     @EventHandler
-    public void onQuit(PlayerQuitEvent e) {
+    public void onQuit(@NotNull PlayerQuitEvent e) {
         ChatSyncUtils.sendQuitMessage(e.getPlayer());
     }
 
+    @Nullable
     @EventHandler
-    public void onAsyncPlayerChat(AsyncPlayerChatEvent e) {
+    public void onAsyncPlayerChat(@NotNull AsyncPlayerChatEvent e) {
+        if (e.isCancelled()) { return; }
+
         ChatSyncUtils.sendChatMessage(e.getMessage(), e.getPlayer());
     }
 
+    @Nullable
     @EventHandler
-    public void onPlayerDeath(PlayerDeathEvent e) {
+    public void onPlayerDeath(@NotNull PlayerDeathEvent e) {
         ChatSyncUtils.sendPlayerDeath(e.getEntity().getPlayer(), e.getDeathMessage());
     }
 
-    /*
-    @EventHandler
-    public void onGoalAdvancement(PlayerAdvancementDoneEvent e) {
-        if (e.getAdvancement() == null || e.getAdvancement().getKey().getKey().contains("recipe/")) return;
-Configurationally
-        ChatSyncUtils.sendGoalAdvancement(e.getPlayer(), e.getAdvancement());
-    }
-    */
-
-    public void onMessageReceived(MessageReceivedEvent e) {
+    @Nullable
+    public void onMessageReceived(@NotNull MessageReceivedEvent e) {
         if (!e.getTextChannel().getId().equals(DataContainor.getChatSyncChannelID())) { return; }
         if (e.getAuthor().isBot()) { return; }
 

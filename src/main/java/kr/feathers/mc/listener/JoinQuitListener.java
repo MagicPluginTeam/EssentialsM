@@ -1,5 +1,6 @@
 package kr.feathers.mc.listener;
 
+import kr.feathers.mc.manager.AFKManager;
 import kr.feathers.utils.DataContainor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -7,9 +8,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 @SuppressWarnings("all")
-public class JoinQuit implements Listener {
-    /* ## <-- 추후에 디코 연동 기능 제작 예정으로, Join&Quit 부분 코드가 길어질 것을 예상하여 별도로 생성함. --> ## */
-
+public class JoinQuitListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         if (DataContainor.isJoinMessageEnabled()) {

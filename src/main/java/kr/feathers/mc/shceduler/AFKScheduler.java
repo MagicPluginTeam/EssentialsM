@@ -1,24 +1,15 @@
 package kr.feathers.mc.shceduler;
 
+import kr.feathers.mc.MagicPluginMain;
 import kr.feathers.mc.manager.AFKManager;
-
-import java.util.Timer;
-import java.util.TimerTask;
+import org.bukkit.Bukkit;
 
 @SuppressWarnings("all")
 public class AFKScheduler {
-    private static Timer AFKTimer = new Timer();
 
-    public static void start(long a) {
-        AFKTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                AFKManager.check();
-            }
-        }, 0, a*20);
-    }
-
-    public static void stop() {
-        AFKTimer.cancel();
+    public static void start(long period) {
+        Bukkit.getScheduler().runTaskTimer(MagicPluginMain.getInstance(), () -> {
+            AFKManager.check();
+        }, 20L, period*20L);
     }
 }

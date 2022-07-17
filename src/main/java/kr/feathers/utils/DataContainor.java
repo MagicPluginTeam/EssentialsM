@@ -35,10 +35,6 @@ public class DataContainor {
         return config.getString("BotToken");
     }
 
-    public static String getBotCommandPrefix() {
-        return config.getString("BotCommandPrefix");
-    }
-
     public static String getVerifyChannelID() {
         return config.getString("VerifyChannelID");
     }
@@ -77,6 +73,10 @@ public class DataContainor {
         return config.getBoolean("VerifyCommandEnabled");
     }
 
+    public static Boolean isStatusCommandEnabled() {
+        return config.getBoolean("StatusCommandEnabled");
+    }
+
     /* [ <-- ChatSync --> ] */
 
     public static String getChatSyncJoinMessage() {
@@ -112,6 +112,10 @@ public class DataContainor {
         return config.getString("AFK.message");
     }
 
+    public static String getAFKDisableMessage() {
+        return config.getString("AFK.disable_message");
+    }
+
     public static Boolean isAFKTeleportEnabled() {
         return config.getBoolean("AFK.teleport.enable");
     }
@@ -122,5 +126,14 @@ public class DataContainor {
                 config.getDouble("AFK.teleport.location.x"),
                 config.getDouble("AFK.teleport.location.y"),
                 config.getDouble("AFK.teleport.location.z"));
+    }
+
+    /* [ <-- ChatChannel --> ] */
+    public static Boolean isChatChannelEnabled() {
+        return config.getBoolean("ChatChannel.enable");
+    }
+
+    public static String getChatMessage() {
+        return config.getString("ChatChannel.message");
     }
 }

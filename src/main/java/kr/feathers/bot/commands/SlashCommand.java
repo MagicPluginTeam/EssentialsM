@@ -1,12 +1,12 @@
-package kr.feathers.bot.listener;
+package kr.feathers.bot.commands;
 
 import kr.feathers.mc.MagicPluginMain;
 import kr.feathers.utils.DataContainor;
-import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 import java.util.logging.Logger;
@@ -14,36 +14,32 @@ import java.util.logging.Logger;
 import static kr.feathers.bot.MagicPluginBot.*;
 
 @SuppressWarnings("all")
-public class Commands extends ListenerAdapter {
+public class SlashCommand extends ListenerAdapter {
     public static Map<User, String> verifyQueue = new HashMap<>();
     private static final Timer timer = new Timer();
     private static final Logger log = MagicPluginMain.getInstance().getLogger();
 
-    public void onMessageReceived(MessageReceivedEvent e) {
-        if (!e.getMessage().getContentRaw().startsWith(BotCommandPrefix)) { return; }
-        if (e.getAuthor().isBot()) { return; }
-
+    @Override
+    public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent e) {
         if (!e.isFromGuild()) {
-            e.getMessage().reply("You can't use this command in DMs!").queue();
+            e.getHook().sendMessage("You can't use this command in DMs!");
             return;
         }
 
-        User user = e.getAuthor();
+        User user = e.getUser();
         TextChannel tc = e.getTextChannel();
-        Message msg = e.getMessage();
-        String[] args = msg.getContentDisplay().split(" ");
+        String command = e.getName();
 
-        if (args[0].equalsIgnoreCase(BotCommandPrefix + "verify")) {
-            if (!DataContainor.isVerifyCommandEnabled()) { return; }
-
-            if (!tc.getId().equals(VerifyChannelID)) {
-                tc.sendMessage("You can only use this command in the verify channel.").queue();
+        //TODO
+        if (command.equalsIgnoreCase("verify")) {
+            if (!tc.getId().equals(DataContainor.getVerifyChannelID())) {
+                e.getHook().sendMessage("You can only use this command in the verify channel.").queue();
                 return;
             }
 
-            if (args.length == 1) {
+            if (e.getOption("code") == null) {
                 if (verifyQueue.containsKey(user)) {
-                    tc.sendMessage("You are already in the queue!").queue();
+                    e.getHook().sendMessage("You are already in the queue!").queue();
                     return;
                 }
 
@@ -53,7 +49,7 @@ public class Commands extends ListenerAdapter {
                         .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                         .toString();
 
-                tc.sendMessage(user.getAsMention() + ", here is your verification code: **" + str + "**\nPlease enter this code here in 30 seconds. `!verify <code>`").queue();
+                e.getHook().sendMessage(user.getAsMention() + ", here is your verification code: **" + str + "**\nPlease enter this code here in 30 seconds. `/verify <code>`").queue();
                 verifyQueue.put(user, str);
 
                 TimerTask timerTask = new TimerTask() {
@@ -61,37 +57,33 @@ public class Commands extends ListenerAdapter {
                     public void run() {
                         if (verifyQueue.containsKey(user)) {
                             verifyQueue.remove(user);
-                            tc.sendMessage("Verification code expired.").queue();
+                            e.getHook().sendMessage("Verification code expired.").queue();
                         }
                     }
                 };
                 timer.schedule(timerTask, 30 * 1000);
             }
-            else if (args.length == 2) {
-                if (!e.isFromGuild()) {
-                    msg.reply("You can't use this command in DMs!").queue();
-                    return;
-                }
-
+            else {
                 if (!tc.getId().equals(VerifyChannelID)) {
-                    tc.sendMessage("You can only use this command in the verify channel.").queue();
+                    e.getHook().sendMessage("You can only use this command in the verify channel.").queue();
                     return;
                 }
 
                 if (!verifyQueue.containsKey(user)) {
-                    tc.sendMessage("You are not in the queue!").queue();
+                    e.getHook().sendMessage("You are not in the queue!").queue();
                     return;
                 }
 
-                if (verifyQueue.get(user).equals(args[1])) {
-                    tc.sendMessage("Verification successful!").queue();
+                if (verifyQueue.get(user).equals(e.getOption("code").getAsString())) {
+                    e.getHook().sendMessage("Verification successful!").queue();
                     verifyQueue.remove(user);
                     tc.getGuild().addRoleToMember(user, tc.getGuild().getRoleById(VerifiedRoleID)).queue();
                 }
                 else {
-                    tc.sendMessage("Verification failed.").queue();
+                    e.getHook().sendMessage("Verification failed.").queue();
                 }
             }
         }
     }
+
 }

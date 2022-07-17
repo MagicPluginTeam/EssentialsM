@@ -20,7 +20,7 @@ import static kr.feathers.bot.MagicPluginBot.jda;
 @SuppressWarnings("all")
 public class MagicPluginMain extends JavaPlugin implements CommandExecutor {
     private static MagicPluginMain plugin;
-    public static YamlConfiguration config;
+    public static YamlConfiguration config, data = new YamlConfiguration();
     private Logger log = Bukkit.getLogger();;
     private ConsoleCommandSender console = Bukkit.getConsoleSender();
     public static String prefix;
@@ -57,11 +57,15 @@ public class MagicPluginMain extends JavaPlugin implements CommandExecutor {
         console.sendMessage("");
 
         if (!(jda == null)) {
-            jda.shutdown();
+            try {
+                jda.shutdown();
+            } catch (NoClassDefFoundError e) {}
         }
         else {
             log.warning("Bot token is not available, null JDA!");
         }
+
+        Bukkit.getScheduler().cancelTasks(plugin);
     }
 
     public void init() {
@@ -69,6 +73,12 @@ public class MagicPluginMain extends JavaPlugin implements CommandExecutor {
         plugin = this;
         config = ConfigUtils.loadDefaultPluginConfig(plugin);
         prefix = DataContainor.getPrefix();
+
+        if (!(new File(plugin.getDataFolder(), "data.yml")).exists()) {
+            data.set("generate", true);
+            ConfigUtils.saveCustomData(plugin, data, "data");
+        }
+        data = ConfigUtils.loadCustomData(plugin, "data");
 
         /* Initilize Scheduler */
         SchedulerManager.InitScheduler();

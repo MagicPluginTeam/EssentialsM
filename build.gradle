@@ -13,9 +13,6 @@ repositories {
         url = 'http://dpp.dpnw.site:8081/repository/maven-public/'
         allowInsecureProtocol = true
     }
-    maven {
-        url = uri("https://repo.papermc.io/repository/maven-public/")
-    }
 }
 
 dependencies {
@@ -28,10 +25,8 @@ dependencies {
 }
 
 java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+    sourceCompatibility = JavaVersion.VERSION_17
 }
-
-
 
 task copyJar {
     copy {
@@ -53,3 +48,5 @@ jar {
 
     copyJar
 }
+sourceCompatibility = JavaVersion.VERSION_16
+targetCompatibility = JavaVersion.VERSION_16
