@@ -114,10 +114,6 @@ public class ChatChannelManager {
             return;
         }
 
-        try {
-            joinChannel(p, getChannel(p));
-        } catch (Exception e) {
-            joinDefault(p);
-        }
+        joinChannel(p, getChannel(p));
     }
 }

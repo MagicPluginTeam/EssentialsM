@@ -8,23 +8,28 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 import kr.feathers.mc.MagicPluginMain;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("all")
 public class ChatChannelListener implements Listener {
     private static final MagicPluginMain plugin = MagicPluginMain.getInstance();
 
+    @Nullable
     @EventHandler
-    public void onJoin(PlayerJoinEvent e) {
+    public void onJoin(@NotNull PlayerJoinEvent e) {
         ChatChannelManager.initPlayer(e.getPlayer());
     }
 
+    @Nullable
     @EventHandler
-    public void onQuit(PlayerQuitEvent e) {
+    public void onQuit(@NotNull PlayerQuitEvent e) {
         ChatChannelManager.leaveChannel(e.getPlayer());
     }
 
+    @Nullable
     @EventHandler
-    public void onAsyncChat(AsyncPlayerChatEvent e) {
+    public void onAsyncChat(@NotNull AsyncPlayerChatEvent e) {
         if (e.isCancelled()) {
             return;
         }
