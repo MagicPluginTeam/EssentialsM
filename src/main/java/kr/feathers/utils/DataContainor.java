@@ -3,11 +3,12 @@ package kr.feathers.utils;
 import net.dv8tion.jda.api.OnlineStatus;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-
-import static kr.feathers.mc.MagicPluginMain.config;
+import org.bukkit.configuration.file.YamlConfiguration;
 
 @SuppressWarnings("all")
 public class DataContainor {
+    public static YamlConfiguration config, data = new YamlConfiguration();
+
     /* [ <-- Public Settings --> ] */
     public static String getPrefix() {
         return config.getString("LogPrefix");

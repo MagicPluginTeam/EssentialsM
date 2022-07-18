@@ -7,7 +7,6 @@ import kr.feathers.utils.DataContainor;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import javax.security.auth.login.LoginException;
@@ -16,12 +15,13 @@ import java.util.logging.Logger;
 
 import static kr.feathers.bot.MagicPluginBot.initJDA;
 import static kr.feathers.bot.MagicPluginBot.jda;
+import static kr.feathers.utils.DataContainor.config;
+import static kr.feathers.utils.DataContainor.data;
 
 @SuppressWarnings("all")
 public class MagicPluginMain extends JavaPlugin implements CommandExecutor {
     private static MagicPluginMain plugin;
-    public static YamlConfiguration config, data = new YamlConfiguration();
-    private Logger log = Bukkit.getLogger();;
+    private Logger log = Bukkit.getLogger();
     private ConsoleCommandSender console = Bukkit.getConsoleSender();
     public static String prefix;
 

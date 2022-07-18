@@ -11,7 +11,7 @@ public class SchedulerManager {
     private static final Logger log = Bukkit.getLogger();
 
     private static void startAFKScheduler(long period) {
-        AFKScheduler.start(period);
+        AFKScheduler.start(period*20);
     }
 
     public static void InitScheduler() {

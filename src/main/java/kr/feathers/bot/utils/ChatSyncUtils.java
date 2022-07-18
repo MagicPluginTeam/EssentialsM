@@ -1,6 +1,7 @@
 package kr.feathers.bot.utils;
 
 import kr.feathers.bot.MagicPluginBot;
+import kr.feathers.mc.utils.PlayerUtils;
 import kr.feathers.utils.DataContainor;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
@@ -42,7 +43,7 @@ public class ChatSyncUtils {
                 .replace("%player%", JoinPlayer.getName());
 
         EmbedBuilder eb = new EmbedBuilder()
-                .setAuthor(str)
+                .setAuthor(str, null, PlayerUtils.getAvatarUrl(JoinPlayer))
                 .setDescription("Now Online: " + Bukkit.getOnlinePlayers().size() + " / " + Bukkit.getMaxPlayers())
                 .setColor(Color.green);
 
@@ -56,7 +57,7 @@ public class ChatSyncUtils {
                 .replace("%player%", QuitPlayer.getName());
 
         EmbedBuilder eb = new EmbedBuilder()
-                .setAuthor(str)
+                .setAuthor(str, null, PlayerUtils.getAvatarUrl(QuitPlayer))
                 .setDescription("Now Online: " + (Bukkit.getOnlinePlayers().size() - 1) + " / " + Bukkit.getMaxPlayers())
                 .setColor(Color.red);
 
@@ -71,7 +72,7 @@ public class ChatSyncUtils {
                 .replace("%cause%", cause);
 
         EmbedBuilder eb = new EmbedBuilder()
-                .setAuthor(str)
+                .setAuthor(str, null, PlayerUtils.getAvatarUrl(DeathPlayer))
                 .setColor(Color.BLACK);
 
         ChatSyncChannel.sendMessageEmbeds(eb.build()).queue();

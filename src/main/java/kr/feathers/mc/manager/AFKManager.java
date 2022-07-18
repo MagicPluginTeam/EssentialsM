@@ -16,6 +16,7 @@ public class AFKManager {
     private static Map<Player, Location> playerLocations = new HashMap<>();
     private static Set<Player> afkingPlayers = new HashSet<>();
     private static Map<Player, Location> beforeLocations = new HashMap<>();
+    private static Map<Player, GameMode> beforeGameModes = new HashMap<>();
 
     public static void check() {
         //if there's no online players, clear all
@@ -26,17 +27,18 @@ public class AFKManager {
         }
 
         // remove offline players
-        for (Map.Entry<Player, Location> entry : playerLocations.entrySet()) {
-            if (entry.getKey().isOnline()) {
-                playerLocations.remove(entry.getKey());
-                afkingPlayers.remove(entry.getKey());
+        playerLocations.forEach((key, value) -> {
+            if (key.isOnline()) {
+                playerLocations.remove(key);
+                beforeGameModes.remove(key);
+                afkingPlayers.remove(key);
             }
-        }
+        });
 
         //save all online player's location
-        for (Player p : Bukkit.getOnlinePlayers()) {
+        Bukkit.getOnlinePlayers().forEach(p -> {
             if (!playerLocations.containsKey(p)) {
-                continue;
+                return;
             }
 
             if (playerLocations.get(p).getX() == p.getLocation().getX()
@@ -49,7 +51,7 @@ public class AFKManager {
             }
 
             playerLocations.put(p, p.getLocation());
-        }
+        });
     }
 
     public static void setPlayerAFKStatus(Player p, boolean isAFKNow) {

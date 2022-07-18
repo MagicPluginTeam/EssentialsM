@@ -7,9 +7,9 @@ import org.bukkit.Bukkit;
 @SuppressWarnings("all")
 public class AFKScheduler {
 
-    public static void start(long period) {
+    public static void start(long periodTicks) {
         Bukkit.getScheduler().runTaskTimer(MagicPluginMain.getInstance(), () -> {
             AFKManager.check();
-        }, 20L, period*20L);
+        }, 0L, periodTicks);
     }
 }

@@ -30,12 +30,7 @@ public class ChatChannelListener implements Listener {
     @Nullable
     @EventHandler
     public void onAsyncChat(@NotNull AsyncPlayerChatEvent e) {
-        if (e.isCancelled()) {
-            return;
-        }
-
-        ChatChannelManager.sendMessage(e.getPlayer(), e.getMessage());
-
+        ChatChannelManager.sendMessage(e.getPlayer(), e.getMessage(), e.isCancelled());
         e.setCancelled(true);
     }
 }

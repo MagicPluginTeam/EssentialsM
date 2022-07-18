@@ -7,7 +7,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 
 import static kr.feathers.mc.MagicPluginMain.prefix;
 
-public class EtcListener implements org.bukkit.event.Listener {
+public class MinecraftOtherListener implements org.bukkit.event.Listener {
     @EventHandler
     public void onRespawn(PlayerRespawnEvent e) {
         if (!e.getPlayer().getWorld().getName().equals("world")) { return; }

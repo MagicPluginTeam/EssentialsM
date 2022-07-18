@@ -19,18 +19,20 @@ public class InitUtils {
     private static final Logger log = Bukkit.getLogger();
 
     public static void registerEvents() {
-        getPluginManager().registerEvents(new ChatSyncListener(), plugin);
-        getPluginManager().registerEvents(new EtcListener(), plugin);
+        getPluginManager().registerEvents(new MinecraftChatSyncListener(), plugin);
+        getPluginManager().registerEvents(new MinecraftOtherListener(), plugin);
 
         if (!(DataContainor.isJoinMessageEnabled() && DataContainor.isQuitMessageEnabled())) {
-            getPluginManager().registerEvents(new JoinQuitListener(), plugin);
+            getPluginManager().registerEvents(new PlayerJoinQuitListener(), plugin);
         }
         if (DataContainor.isAFKEnabled()) {
-            getPluginManager().registerEvents(new AFKListener(), plugin);
+            getPluginManager().registerEvents(new MinecraftAFKListener(), plugin);
         }
+        /*
         if (DataContainor.isChatChannelEnabled()) {
             getPluginManager().registerEvents(new ChatChannelListener(), plugin);
         }
+        */
 
         log.info("[EssentialsM] Events Registered!");
     }

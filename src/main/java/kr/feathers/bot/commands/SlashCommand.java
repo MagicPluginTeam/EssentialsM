@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -16,7 +17,6 @@ import static kr.feathers.bot.MagicPluginBot.*;
 @SuppressWarnings("all")
 public class SlashCommand extends ListenerAdapter {
     public static Map<User, String> verifyQueue = new HashMap<>();
-    private static final Timer timer = new Timer();
     private static final Logger log = MagicPluginMain.getInstance().getLogger();
 
     @Override
@@ -52,16 +52,12 @@ public class SlashCommand extends ListenerAdapter {
                 e.getHook().sendMessage(user.getAsMention() + ", here is your verification code: **" + str + "**\nPlease enter this code here in 30 seconds. `/verify <code>`").queue();
                 verifyQueue.put(user, str);
 
-                TimerTask timerTask = new TimerTask() {
-                    @Override
-                    public void run() {
-                        if (verifyQueue.containsKey(user)) {
-                            verifyQueue.remove(user);
-                            e.getHook().sendMessage("Verification code expired.").queue();
-                        }
+                Bukkit.getScheduler().runTaskLater(MagicPluginMain.getInstance(), () -> {
+                    if (verifyQueue.containsKey(user)) {
+                        verifyQueue.remove(user);
+                        e.getHook().sendMessage("Verification code expired.").queue();
                     }
-                };
-                timer.schedule(timerTask, 30 * 1000);
+                }, 30L*20L);
             }
             else {
                 if (!tc.getId().equals(VerifyChannelID)) {

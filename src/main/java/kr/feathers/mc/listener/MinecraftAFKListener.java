@@ -7,7 +7,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 @SuppressWarnings("all")
-public class AFKListener implements Listener {
+public class MinecraftAFKListener implements Listener {
     @EventHandler
     public void onMove(PlayerMoveEvent e) {
         if (!((int) e.getFrom().getX() == (int) e.getTo().getX()

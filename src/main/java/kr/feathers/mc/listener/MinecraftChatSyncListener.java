@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("all")
-public class ChatSyncListener extends ListenerAdapter implements Listener {
+public class MinecraftChatSyncListener implements Listener {
     @Nullable
     @EventHandler
     public void onJoin(@NotNull PlayerJoinEvent e) {
@@ -38,17 +38,5 @@ public class ChatSyncListener extends ListenerAdapter implements Listener {
     @EventHandler
     public void onPlayerDeath(@NotNull PlayerDeathEvent e) {
         ChatSyncUtils.sendPlayerDeath(e.getEntity().getPlayer(), e.getDeathMessage());
-    }
-
-    @Nullable
-    public void onMessageReceived(@NotNull MessageReceivedEvent e) {
-        if (!e.getTextChannel().getId().equals(DataContainor.getChatSyncChannelID())) { return; }
-        if (e.getAuthor().isBot()) { return; }
-
-        String str = DataContainor.getChatReceivedFromDiscordMessage()
-                        .replace("%user_name%", e.getMember().getEffectiveName())
-                        .replace("%message%", e.getMessage().getContentRaw());
-
-        Bukkit.broadcastMessage(str);
     }
 }

@@ -18,7 +18,7 @@ import java.util.List;
 
 import static kr.feathers.bot.MagicPluginBot.initVars;
 import static kr.feathers.bot.MagicPluginBot.isBotRunning;
-import static kr.feathers.mc.MagicPluginMain.config;
+import static kr.feathers.utils.DataContainor.config;
 import static kr.feathers.mc.MagicPluginMain.prefix;
 
 @SuppressWarnings("all")

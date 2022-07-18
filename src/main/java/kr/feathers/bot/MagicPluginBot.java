@@ -2,7 +2,7 @@ package kr.feathers.bot;
 
 import kr.feathers.bot.commands.SlashCommand;
 import kr.feathers.bot.utils.RichPresenceUtils;
-import kr.feathers.mc.listener.ChatSyncListener;
+import kr.feathers.mc.listener.MinecraftChatSyncListener;
 import kr.feathers.mc.utils.InitUtils;
 import kr.feathers.utils.DataContainor;
 import net.dv8tion.jda.api.JDA;
@@ -44,7 +44,7 @@ public class MagicPluginBot {
 
         /* [ <-- Add Listener --> ] */
         jda.addEventListener(new SlashCommand());
-        jda.addEventListener(new ChatSyncListener());
+        jda.addEventListener(new MinecraftChatSyncListener());
 
         /* [ <-- Init Slash Commands --> ] */
         InitUtils.updateBotCommands();

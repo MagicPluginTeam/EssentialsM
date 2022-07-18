@@ -48,9 +48,7 @@ public class ChatChannelManager {
             return;
         }
 
-        for (Player ccp : chatChannels.get(0)) {
-            ccp.sendMessage(prefix + " §7" + p.getName() + " §7joined the chat channel.");
-        }
+        chatChannels.get(0).forEach(ccp -> ccp.sendMessage(prefix + " §7Player §c" + p.getName() + " §7has joined the default chat channel."));
     }
 
     public static void createChannel(Player p, int ChannelID) {
@@ -82,9 +80,7 @@ public class ChatChannelManager {
             return;
         }
 
-        for (Player ccp : chatChannels.get(getChannel(p))) {
-            ccp.sendMessage(prefix + " §7Player §c" + p.getName() + "§7 left chat channel.");
-        }
+        chatChannels.get(getChannel(p)).forEach(ccp -> ccp.sendMessage(prefix + " §7" + p.getName() + " §7left the chat channel."));
     }
 
     public static int getChannel(Player p) {
@@ -95,13 +91,11 @@ public class ChatChannelManager {
         data.set(p.getUniqueId().toString() + ".channel", ChannelID);
     }
 
-    public static void sendMessage(Player p, String Message) {
-        for (Player ccp : chatChannels.get(getChannel(p))) {
-            ccp.sendMessage(DataContainor.getChatMessage()
-                    .replace("%player%", p.getName())
-                    .replace("%message%", Message)
-                    .replace("%channel%", String.valueOf(getChannel(p))));
-        }
+    public static void sendMessage(Player p, String Message, boolean Cancelled) {
+        chatChannels.get(getChannel(p)).forEach((ccp) -> ccp.sendMessage(DataContainor.getChatMessage()
+                .replace("%player%", p.getName())
+                .replace("%message%", Message)
+                .replace("%channel%", String.valueOf(getChannel(p)))));
     }
 
     public static void initPlayer(Player p) {
