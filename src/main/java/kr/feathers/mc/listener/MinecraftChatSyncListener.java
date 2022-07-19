@@ -29,8 +29,6 @@ public class MinecraftChatSyncListener implements Listener {
     @Nullable
     @EventHandler
     public void onAsyncPlayerChat(@NotNull AsyncPlayerChatEvent e) {
-        if (e.isCancelled()) { return; }
-
         ChatSyncUtils.sendChatMessage(e.getMessage(), e.getPlayer());
     }
 

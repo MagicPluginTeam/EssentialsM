@@ -88,7 +88,7 @@ public class DataContainor {
         return config.getString("ChatSync.quitMessage");
     }
 
-    public static String getPlayerDeathMessage() {
+    public static String getChatSyncPlayerDeathMessage() {
         return config.getString("ChatSync.playerDeathMessage");
     }
 
@@ -98,6 +98,30 @@ public class DataContainor {
 
     public static String getChatReceivedFromDiscordMessage() {
             return config.getString("ChatSync.messageReceivedFromDiscord");
+    }
+
+    public static String getChatSyncPlayerAFKMessage() {
+        return config.getString("ChatSync.afkMessage");
+    }
+
+    public static boolean isChatSyncChatMessageEnabled() {
+        return config.getBoolean("EnabledChatSync.chat");
+    }
+
+    public static boolean isChatSyncJoinMessageEnabled() {
+        return config.getBoolean("EnabledChatSync.join");
+    }
+
+    public static boolean isChatSyncQuitMessageEnabled() {
+        return config.getBoolean("EnabledChatSync.quit");
+    }
+
+    public static boolean isChatSyncPlayerDeathMessageEnabled() {
+        return config.getBoolean("EnabledChatSync.death");
+    }
+
+    public static boolean isChatSyncPlayerAFKMessageEnabled() {
+        return config.getBoolean("EnabledChatSync.afk");
     }
 
     /* [ <-- AFK --> ] */

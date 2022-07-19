@@ -88,8 +88,10 @@ ChatSync:
   quitMessage: "%player% left the server!"  #[ you can use %player% ]#
   playerDeathMessage: "%cause%"  #[ you can use %player%, %cause% ]#
   messageReceivedFromDiscord: "§b[§6Discord§b] §7%user_name% » %message%"  #[ you can use %user_name% / %message% ]#
+  afkMessage: "%player%'s AFK status is changed to %status%"  #[ you can use %player% / %status% ]#
 EnabledChatSync:
   chat: true
   join: true
   quit: true
   death: true
+  afk: true

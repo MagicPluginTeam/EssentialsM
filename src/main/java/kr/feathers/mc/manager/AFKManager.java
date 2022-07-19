@@ -1,5 +1,6 @@
 package kr.feathers.mc.manager;
 
+import kr.feathers.bot.utils.ChatSyncUtils;
 import kr.feathers.utils.DataContainor;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -54,8 +55,8 @@ public class AFKManager {
         });
     }
 
-    public static void setPlayerAFKStatus(Player p, boolean isAFKNow) {
-        if (isAFKNow) { //true
+    public static void setPlayerAFKStatus(Player p, boolean status) {
+        if (status) { //true
             beforeLocations.put(p, p.getLocation());
 
             afkingPlayers.add(p);
@@ -87,6 +88,8 @@ public class AFKManager {
 
             p.setGameMode(GameMode.SURVIVAL);
         }
+
+        ChatSyncUtils.sendPlayerAFK(p);
     }
 
     public static void playerQuit(Player p) {

@@ -1,12 +1,12 @@
 package kr.feathers.bot.utils;
 
 import kr.feathers.bot.MagicPluginBot;
+import kr.feathers.mc.manager.AFKManager;
 import kr.feathers.mc.utils.PlayerUtils;
 import kr.feathers.utils.DataContainor;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
 import org.bukkit.Bukkit;
-import org.bukkit.advancement.Advancement;
 import org.bukkit.entity.Player;
 
 import java.awt.Color;
@@ -27,7 +27,7 @@ public class ChatSyncUtils {
     }
 
     public static void sendChatMessage(String message, Player ChatPlayer) {
-        if (!MagicPluginBot.isBotRunning()) { return; }
+        if (!(MagicPluginBot.isBotRunning() || DataContainor.isChatSyncChatMessageEnabled())) { return; }
 
         String str = DataContainor.getChatSyncMessage()
                 .replace("%player%", "`" + ChatPlayer.getName() + "`")
@@ -37,7 +37,7 @@ public class ChatSyncUtils {
     }
 
     public static void sendJoinMessage(Player JoinPlayer) {
-        if (!MagicPluginBot.isBotRunning()) { return; }
+        if (!(MagicPluginBot.isBotRunning() || DataContainor.isChatSyncJoinMessageEnabled())) { return; }
 
         String str = DataContainor.getChatSyncJoinMessage()
                 .replace("%player%", JoinPlayer.getName());
@@ -51,7 +51,7 @@ public class ChatSyncUtils {
     }
 
     public static void sendQuitMessage(Player QuitPlayer) {
-        if (!MagicPluginBot.isBotRunning()) { return; }
+        if (!(MagicPluginBot.isBotRunning() || DataContainor.isChatSyncQuitMessageEnabled())) { return; }
 
         String str = DataContainor.getChatSyncQuitMessage()
                 .replace("%player%", QuitPlayer.getName());
@@ -65,15 +65,29 @@ public class ChatSyncUtils {
     }
 
     public static void sendPlayerDeath(Player DeathPlayer, String cause) {
-        if (!MagicPluginBot.isBotRunning()) { return; }
+        if (!(MagicPluginBot.isBotRunning() || DataContainor.isChatSyncPlayerDeathMessageEnabled())) { return; }
 
-        String str = DataContainor.getPlayerDeathMessage()
+        String str = DataContainor.getChatSyncPlayerDeathMessage()
                 .replace("%player%", DeathPlayer.getName())
                 .replace("%cause%", cause);
 
         EmbedBuilder eb = new EmbedBuilder()
                 .setAuthor(str, null, PlayerUtils.getAvatarUrl(DeathPlayer))
                 .setColor(Color.BLACK);
+
+        ChatSyncChannel.sendMessageEmbeds(eb.build()).queue();
+    }
+
+    public static void sendPlayerAFK(Player p) {
+        if (!(MagicPluginBot.isBotRunning() || DataContainor.isChatSyncPlayerAFKMessageEnabled())) { return; }
+
+        String str = DataContainor.getAFKMessage()
+                .replace("%player%", p.getName())
+                .replace("%status%", AFKManager.isAFKNow(p) ? "true" : "false");
+
+        EmbedBuilder eb = new EmbedBuilder()
+                .setAuthor(str, null, PlayerUtils.getAvatarUrl(p))
+                .setColor(Color.CYAN);
 
         ChatSyncChannel.sendMessageEmbeds(eb.build()).queue();
     }
